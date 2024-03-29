@@ -1,6 +1,19 @@
 
 # Changelog
 
+## Version 3.0.0.beta-1.1.4
+
+- *fix* Fehler bei dem die Übersetzungen zu manchen Behaviors nicht richtig geladen wurden
+
+## Version 3.0.0.beta-1.1.3
+
+- *fix* Fehler bei der Variablenbennenung des Behaviors Reward_InitTradePost
+- *fix* Fehler beim behandeln fehlerhafter Behaviors
+
+## Version 3.0.0.beta-1.1.1
+
+- *fix* Reward_InitTradePost geported.
+
 ## Version 3.0.0.beta-1.9
 
 - *fix* Mehrere Fixes von 2.15.0.3 geported.
