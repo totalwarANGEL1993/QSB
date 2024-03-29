@@ -403,8 +403,8 @@ end
 function B_Goal_Diplomacy:ChangeCaption(_Quest)
     local PlayerName = GetPlayerName(self.PlayerID) or "";
     local Text = string.format(
-        Swift:Localize(self.TextPattern),
-        Swift:Localize(self.DiploNameMap[self.DiplState]),
+        Swift.Text:Localize(self.TextPattern),
+        Swift.Text:Localize(self.DiploNameMap[self.DiplState]),
         PlayerName
     );
     Swift.Quest:ChangeCustomQuestCaptionText(Text, _Quest);
@@ -1233,8 +1233,8 @@ function B_Goal_ActivateBuff:CustomFunction(_Quest)
         end
         Swift.Quest:ChangeCustomQuestCaptionText(
             string.format(
-                Swift:Localize(Swift.Behavior.Text.ActivateBuff.Pattern),
-                Swift:Localize(tMapping[self.BuffName])
+                Swift.Text:Localize(Swift.Behavior.Text.ActivateBuff.Pattern),
+                Swift.Text:Localize(tMapping[self.BuffName])
             ),
             _Quest
         );
@@ -1950,9 +1950,9 @@ function B_Goal_SoldierCount:CustomFunction(_Quest)
         local PlayerName = GetPlayerName(self.PlayerID) or "";
         Swift.Quest:ChangeCustomQuestCaptionText(
             string.format(
-                Swift:Localize(Swift.Behavior.Text.SoldierCount.Pattern),
+                Swift.Text:Localize(Swift.Behavior.Text.SoldierCount.Pattern),
                 PlayerName,
-                Swift:Localize(Swift.Behavior.Text.SoldierCount.Relation[Relation]),
+                Swift.Text:Localize(Swift.Behavior.Text.SoldierCount.Relation[Relation]),
                 self.NumberOfUnits
             ),
             _Quest
@@ -2135,7 +2135,7 @@ function B_Goal_Festivals:CustomFunction(_Quest)
         local PlayerName = GetPlayerName(self.PlayerID) or "";
         Swift.Quest:ChangeCustomQuestCaptionText(
             string.format(
-                Swift:Localize(Swift.Behavior.Text.Festivals.Pattern),
+                Swift.Text:Localize(Swift.Behavior.Text.Festivals.Pattern),
                 PlayerName, self.NeededFestivals
             ), 
             _Quest

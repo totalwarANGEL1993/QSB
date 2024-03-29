@@ -2,5 +2,4 @@
 
 # Changelog:
 
-- *fix* Fehler bei der Variablenbennenung des Behaviors Reward_InitTradePost
-- *fix* Fehler beim behandeln fehlerhafter Behaviors
+- *fix* Fehler bei dem die Übersetzungen zu manchen Behaviors nicht richtig geladen wurden
