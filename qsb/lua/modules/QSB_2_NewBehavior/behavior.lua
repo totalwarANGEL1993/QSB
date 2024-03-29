@@ -1732,10 +1732,10 @@ Swift:RegisterBehavior(B_Reward_VictoryWithParty);
 -- @within Reward
 --
 function Reward_InitTradePost(...)
-    return b_Reward_InitTradePost:new(...)
+    return B_Reward_InitTradePost:new(...)
 end
 
-b_Reward_InitTradePost = {
+B_Reward_InitTradePost = {
 	Name = "Reward_InitTradePost",
     Description = {
         en = "Reward: Sets up a tradepost.",
@@ -1763,11 +1763,11 @@ b_Reward_InitTradePost = {
 	},
 }
 
-function b_Reward_InitTradePost:GetRewardTable()
+function B_Reward_InitTradePost:GetRewardTable()
 	return {Reward.Custom, {self, self.CustomFunction}};
 end
 
-function b_Reward_InitTradePost:AddParameter(_Index, _Parameter)
+function B_Reward_InitTradePost:AddParameter(_Index, _Parameter)
 	if (_Index == 0) then
 		self.PlayerID = _Parameter * 1
 	elseif (_Index == 1) then
@@ -1807,7 +1807,7 @@ function b_Reward_InitTradePost:AddParameter(_Index, _Parameter)
 	end
 end
 
-function b_Reward_InitTradePost:GetCustomData(_Index)
+function B_Reward_InitTradePost:GetCustomData(_Index)
 	if (_Index == 1) then
 		return {"0", "1", "2", "3", "4"}
 	elseif _Index >= 2 and _Index <= 16 and _Index % 2 == 0 then
@@ -1821,7 +1821,7 @@ function b_Reward_InitTradePost:GetCustomData(_Index)
 	end
 end
 
-function b_Reward_InitTradePost:CustomFunction(_Quest)
+function B_Reward_InitTradePost:CustomFunction(_Quest)
 	local OfferCount = 0
 	for i = 1, 4 do
 		if self["PayAmount"..i] and self["PayAmount"..i] > 0 and self["OfferAmount"..i] and self["OfferAmount"..i] > 0 then
@@ -1850,7 +1850,7 @@ function b_Reward_InitTradePost:CustomFunction(_Quest)
 end
 
 if g_GameExtraNo >= 1 then
-	Swift:RegisterBehavior(b_Reward_InitTradePost);
+	Swift:RegisterBehavior(B_Reward_InitTradePost);
 end
 
 -- -------------------------------------------------------------------------- --

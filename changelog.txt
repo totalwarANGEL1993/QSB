@@ -2,4 +2,5 @@
 
 # Changelog:
 
-- *fix* Portierung von fehlenden Dingen aus der 2.15.0.4.
+- *fix* Fehler bei der Variablenbennenung des Behaviors Reward_InitTradePost
+- *fix* Fehler beim behandeln fehlerhafter Behaviors

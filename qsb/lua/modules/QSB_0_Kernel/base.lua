@@ -722,7 +722,15 @@ function Swift:RegisterBehavior(_Behavior)
         return;
     end
     if not _G["B_" .. _Behavior.Name] then
-        error(string.format("Behavior %s does not exist!", _Behavior.Name));
+        local text = string.format("Behavior %s does not exist!", _Behavior.Name)
+        if not GUI then
+            Logic.ExecuteInLuaLocalState(string.format(
+                [[GUI.AddStaticNote("%s")]],
+                text
+            ));
+        else
+            GUI.AddStaticNote(text);
+        end
         return;
     end
 
