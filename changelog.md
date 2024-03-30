@@ -1,6 +1,9 @@
 
 # Changelog
 
+## Version 3.0.0.beta-1.1.5
+- *fix* Mehrere Rechtschreibfehler in den Behaviorn wurden korrigiert.
+
 ## Version 3.0.0.beta-1.1.4
 
 - *fix* Fehler bei dem die Übersetzungen zu manchen Behaviors nicht richtig geladen wurden
