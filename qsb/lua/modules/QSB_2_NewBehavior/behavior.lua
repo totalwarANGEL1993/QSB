@@ -782,7 +782,7 @@ Swift:RegisterBehavior(B_Goal_SpyOnBuilding);
 -- Der Spieler muss eine Anzahl an Gegenständen finden, die bei den angegebenen
 -- Positionen platziert werden.
 --
--- @param[type=string] _Positions Präfix aller durchnummerierten Enttities
+-- @param[type=string] _Positions Präfix aller durchnummerierten Entities
 -- @param[type=string] _Model     Model für alle Gegenstände
 -- @param[type=number] _Distance  Aktivierungsdistanz (0 = Default = 300)
 --
@@ -795,9 +795,9 @@ end
 B_Goal_FetchItems = {
     Name = "Goal_FetchItems",
     Description = {
-        en = "Goal: ",
-        de = "Ziel: ",
-        fr = "Objectif: ",
+        en = "Goal: The player has to find a given number of objects.",
+        de = "Ziel: Der Spieler muss eine Anzahl an Gegenständen finden.",
+        fr = "Objectif: ", -- FIXME
     },
     Parameter = {
         { ParameterType.Default, en = "Search points",          de = "Suchpunkte",              fr = "Points de recherche" },
@@ -1054,7 +1054,7 @@ end
 B_Reprisal_SetPosition = {
     Name = "Reprisal_SetPosition",
     Description = {
-        en = "Reprisal: Places an entity relative to the position of another. The entity can look the target.",
+        en = "Reprisal: Places an entity relative to the position of another. The entity can look at the target.",
         de = "Vergeltung: Setzt eine Entity relativ zur Position einer anderen. Die Entity kann zum Ziel ausgerichtet werden.",
         fr = "Rétribution: place une Entity vis-à-vis de l'emplacement d'une autre. L'entité peut être orientée vers la cible.",
     },
@@ -2122,8 +2122,8 @@ end
 B_Trigger_OnAtLeastXOfYQuestsFailed = {
     Name = "Trigger_OnAtLeastXOfYQuestsFailed",
     Description = {
-        en = "Trigger: if at least X of Y given quests has been finished successfully.",
-        de = "Auslöser: wenn X von Y angegebener Quests fehlgeschlagen sind.",
+        en = "Trigger: If at least X of Y given quests have been failed.",
+        de = "Auslöser: Wenn X von Y angegebenen Quests fehlgeschlagen sind.",
         fr = "Déclencheur: lorsque X des Y quêtes indiquées ont échoué.",
     },
     Parameter = {
@@ -2221,8 +2221,8 @@ end
 B_Trigger_AmmunitionDepleted = {
     Name = "Trigger_AmmunitionDepleted",
     Description = {
-        en = "Trigger: if the ammunition of the entity is depleted.",
-        de = "Auslöser: wenn die Munition der Entity aufgebraucht ist.",
+        en = "Trigger: If the ammunition of the entity is depleted.",
+        de = "Auslöser: Wenn die Munition der Entity aufgebraucht ist.",
         fr = "Déclencheur: lorsque les munitions de l'entité sont épuisées.",
     },
     Parameter = {
@@ -2280,8 +2280,8 @@ end
 B_Trigger_OnExactOneQuestIsWon = {
     Name = "Trigger_OnExactOneQuestIsWon",
     Description = {
-        en = "Trigger: if one of two given quests has been finished successfully, but NOT both.",
-        de = "Auslöser: wenn eine von zwei angegebenen Quests (aber NICHT beide) erfolgreich abgeschlossen wurde.",
+        en = "Trigger: If one of two given quests has been finished successfully, but NOT both.",
+        de = "Auslöser: Wenn eine von zwei angegebenen Quests (aber NICHT beide) erfolgreich abgeschlossen wurde.",
         fr = "Déclencheur: lorsque l'une des deux quêtes indiquées (mais PAS les deux) a été accomplie avec succès.",
     },
     Parameter = {
@@ -2351,7 +2351,7 @@ B_Trigger_OnExactOneQuestIsLost = {
     Name = "Trigger_OnExactOneQuestIsLost",
     Description = {
         en = "Trigger: If one of two given quests has been lost, but NOT both.",
-        de = "Auslöser: Wenn einer von zwei angegebenen Quests (aber NICHT beide) fehlschlägt.",
+        de = "Auslöser: Wenn eine von zwei angegebenen Quests (aber NICHT beide) fehlschlägt.",
         fr = "Déclencheur: Si l'une des deux quêtes indiquées (mais PAS les deux) échoue.",
     },
     Parameter = {
