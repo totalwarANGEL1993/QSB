@@ -2,4 +2,4 @@
 
 # Changelog:
 
-- *fix* Fehler bei dem die Übersetzungen zu manchen Behaviors nicht richtig geladen wurden
+- *fix* Mehrere Rechtschreibfehler in den Behaviorn wurden korrigiert.
