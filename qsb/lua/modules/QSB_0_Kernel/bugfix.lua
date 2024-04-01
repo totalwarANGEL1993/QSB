@@ -81,21 +81,22 @@ function Swift.Bugfix:OverrideIsMerchantArrived()
             else
                 local Target = objective.Data[6] and objective.Data[6] or self.SendingPlayer;
                 local StorehouseID = Logic.GetStoreHouse(Target);
-                local MarketplaceID = Logic.GetStoreHouse(Target);
-                local HeadquartersID = Logic.GetStoreHouse(Target);
+                local MarketplaceID = Logic.GetMarketplace(Target);
+                local HeadquartersID = Logic.GetHeadquarters(Target);
                 local HasArrived = nil;
 
+                -- If Resource does not go to Storehouse and the destination is much farther it is set as successfull
+                -- when passing the storehouse instead of its correct destination place.
                 if StorehouseID > 0 then
                     local x,y = Logic.GetBuildingApproachPosition(StorehouseID);
-                    HasArrived = API.GetDistance(objective.Data[3], {X= x, Y= y}) < 1000;
+                    HasArrived = API.GetDistance(objective.Data[3], {X= x, Y= y}) < 1150;
                 end
                 if MarketplaceID > 0 then
-                    local x,y = Logic.GetBuildingApproachPosition(MarketplaceID);
-                    HasArrived = HasArrived or API.GetDistance(objective.Data[3], {X= x, Y= y}) < 1000;
+                    HasArrived = HasArrived or API.GetDistance(objective.Data[3], MarketplaceID) < 1150;
                 end
                 if HeadquartersID > 0 then
                     local x,y = Logic.GetBuildingApproachPosition(HeadquartersID);
-                    HasArrived = HasArrived or API.GetDistance(objective.Data[3], {X= x, Y= y}) < 1000;
+                    HasArrived = HasArrived or API.GetDistance(objective.Data[3], {X= x, Y= y}) < 1150;
                 end
                 return HasArrived;
             end
