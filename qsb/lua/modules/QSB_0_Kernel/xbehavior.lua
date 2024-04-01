@@ -4948,7 +4948,7 @@ end
 B_Reward_DestroyEntity = Swift.LuaBase:CopyTable(B_Reprisal_DestroyEntity);
 B_Reward_DestroyEntity.Name = "Reward_DestroyEntity";
 B_Reward_DestroyEntity.Description.en = "Reward: Destroys an entity.";
-B_Reward_DestroyEntity.Description.de = "Lohn: Löscht eine Entität.",
+B_Reward_DestroyEntity.Description.de = "Lohn: Löscht eine Entität.";
 B_Reward_DestroyEntity.Description.fr = "Récompense: Remplace une entité par une entité de script invisible qui prend le nom.";  -- FIXME
 B_Reward_DestroyEntity.GetReprisalTable = nil;
 
