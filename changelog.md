@@ -1,6 +1,9 @@
 
 # Changelog
 
+## Version 3.0.0.beta-1.1.6
+- *fix* Fixt einen Fehler bei der Marktplatzlieferung
+
 ## Version 3.0.0.beta-1.1.5
 - *fix* Mehrere Rechtschreibfehler in den Behaviorn wurden korrigiert.
 
