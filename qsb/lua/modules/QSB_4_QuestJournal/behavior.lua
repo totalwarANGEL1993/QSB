@@ -178,7 +178,7 @@ B_Reward_JournalWrite = Swift.LuaBase:CopyTable(B_Reprisal_JournalWrite);
 B_Reward_JournalWrite.Name = "Reward_JournalWrite";
 B_Reward_JournalWrite.Description.en = "Reward: Adds or alters a journal entry to a quest.";
 B_Reward_JournalWrite.Description.de = "Lohn: Schreibt oder ändert einen Tagebucheintrag.";
-B_Reward_JournalWrite.Description.de = "Récompense: Écrit ou modifie une entrée de journal.";
+B_Reward_JournalWrite.Description.fr = "Récompense: Écrit ou modifie une entrée de journal.";
 B_Reward_JournalWrite.GetReprisalTable = nil;
 
 B_Reward_JournalWrite.GetRewardTable = function(self, _Quest)
