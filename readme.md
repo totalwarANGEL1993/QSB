@@ -8,7 +8,7 @@
 <a href="https://github.com/Siedelwood/QSB/issues">
   <img src="https://img.shields.io/github/issues/Siedelwood/QSB"/>
 </a>
-<a href=https://de.wikipedia.org/wiki/Microsoft_Windows">
+<a href="https://de.wikipedia.org/wiki/Microsoft_Windows">
   <img src="https://img.shields.io/badge/platform-windows-lightgrey.svg"/>
 </a>
 <a href="https://www.lua.org/">
