@@ -1,8 +1,13 @@
 <p align="center">
+<a href="https://github.com/Siedelwood/QSB/releases/latest">
+  <img src="https://img.shields.io/github/v/release/Siedelwood/QSB"/>
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-black.svg"/>
+</a>
 <a href="https://www.lua.org/">
   <img src="https://img.shields.io/badge/lua-5.1-brightgreen.svg"/>
 </a>
-<img src="https://github.com/Siedelwood/QSB/actions/workflows/CompleteQSBAction.yml/badge.svg"/>
 <a href="https://discord.gg/Duhxe7jThs">
   <img src="https://img.shields.io/badge/chat-discord-brightgreen.svg"/>
 </a>
