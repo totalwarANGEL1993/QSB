@@ -6,6 +6,8 @@
 <a href="https://discord.gg/Duhxe7jThs">
   <img src="https://img.shields.io/badge/chat-discord-brightgreen.svg"/>
 </a>
+<br>
+<img src="https://github.com/Siedelwood/QSB/actions/workflows/CompleteQSBAction.yml/badge.svg"/>
 </p>
 
 # Einleitung
