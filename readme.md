@@ -5,6 +5,12 @@
 <a href="https://opensource.org/licenses/MIT">
   <img src="https://img.shields.io/badge/License-MIT-black.svg"/>
 </a>
+<a href="https://github.com/Siedelwood/QSB/issues">
+  <img src="https://img.shields.io/github/issues/Siedelwood/QSB"/>
+</a>
+<a href=https://de.wikipedia.org/wiki/Microsoft_Windows">
+  <img src="https://img.shields.io/badge/platform-windows-lightgrey.svg"/>
+</a>
 <a href="https://www.lua.org/">
   <img src="https://img.shields.io/badge/lua-5.1-brightgreen.svg"/>
 </a>
