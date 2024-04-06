@@ -2,7 +2,7 @@
 <a href="https://www.lua.org/">
   <img src="https://img.shields.io/badge/lua-5.1-brightgreen.svg"/>
 </a>
-![example workflow](https://github.com/Siedelwood/QSB/actions/workflows/CompleteQSBAction.yml/badge.svg)
+<img src="https://github.com/Siedelwood/QSB/actions/workflows/CompleteQSBAction.yml/badge.svg"/>
 <a href="https://discord.gg/Duhxe7jThs">
   <img src="https://img.shields.io/badge/chat-discord-brightgreen.svg"/>
 </a>
