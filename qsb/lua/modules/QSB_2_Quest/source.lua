@@ -7,7 +7,9 @@ ModuleQuest = {
     },
 
     Global = {
-        Data = {},
+        Data = {
+            QuestMessageID = 0,
+        },
         ExternalTriggerConditions = {},
         ExternalTimerConditions = {},
         ExternalDecisionConditions = {},
@@ -334,6 +336,81 @@ function ModuleQuest.Global:GetFreeSpaceInlineTrigger()
                     end
                 end
                 return VisbleQuests < 6;
+            end
+        }
+    };
+end
+
+---
+-- Erzeugt eine Nachricht im Questfenster.
+--
+-- Der erzeugte Quest wird immer fehlschlagen. Der angezeigte Test ist die
+-- Failure Message. Der Quest wird immer nach Ablauf der Wartezeit nach
+-- Abschluss des Ancestor Quest gestartet bzw. unmittelbar, wenn es keinen
+-- Ancestor Quest gibt. Das Callback ist eine Funktion, die zur Anzeigezeit
+-- des Quests ausgeführt wird.
+--
+-- Alle Paramater sind optional und können von rechts nach links weggelassen
+-- oder mit nil aufgefüllt werden.
+--
+-- @param[type=string]   _Text        Anzeigetext der Nachricht
+-- @param[type=number]   _Sender      Sender der Nachricht
+-- @param[type=number]   _Receiver    Receiver der Nachricht
+-- @param[type=number]   _AncestorWt  Wartezeit
+-- @param[type=function] _Callback    Callback
+-- @param[type=string]   _Ancestor    Vorgänger-Quest
+-- @param[type=string]   _QuestName   Questname überschreiben
+-- @return[type=string] QuestName
+--
+-- @within Internal
+-- @local
+--
+function ModuleQuest.Global:QuestMessage(_Text, _Sender, _Receiver, _AncestorWt, _Callback, _Ancestor, _QuestName)
+    self.Data.QuestMessageID = self.Data.QuestMessageID + 1;
+
+    -- Lokalisierung
+    if _Text then
+        _Text = API.ConvertPlaceholders(API.Localize(_Text));
+    end
+
+    -- Quest erzeugen
+    local _, CreatedQuest = QuestTemplate:New(
+        (_QuestName ~= nil and _QuestName) or ("QSB_QuestMessage_" .. self.Data.QuestMessageID),
+        (_Sender or 1),
+        (_Receiver or 1),
+        { {Objective.Dummy} },
+        { self:GetRealTimeWaitInlineTrigger(_Ancestor, _AncestorWt) },
+        0, nil, nil, _Callback, nil, false, (_Text ~= nil), nil, nil, _Text, nil
+    );
+    return CreatedQuest.Identifier;
+end
+
+---
+-- Erzeugt einen Inline-Behavior welches In Echtzeit auf das Ende eines
+-- Quests wartet.
+--
+-- @param[type=string] _Ancestor   Name des Vorgängers
+-- @param[type=number] _AncestorWt Wartezeit in realen Sekunden
+-- @return[type=table] Trigger Behavior
+-- @within Internal
+-- @local
+--
+function ModuleQuest.Global:GetRealTimeWaitInlineTrigger(_Ancestor, _AncestorWt)
+    return {
+        Triggers.Custom2, {
+            {QuestName = _Ancestor, WaitTime = _AncestorWt or 1,},
+            function(_Data, _Quest)
+                if not _Data.QuestName then
+                    return true;
+                end
+                local QuestID = GetQuestID(_Data.QuestName);
+                if (Quests[QuestID] and Quests[QuestID].State == QuestState.Over and Quests[QuestID].Result ~= QuestResult.Interrupted) then
+                    _Data.WaitTimeTimer = _Data.WaitTimeTimer or API.RealTimeGetSecondsPassedSinceGameStart();
+                    if API.RealTimeGetSecondsPassedSinceGameStart() >= _Data.WaitTimeTimer + _Data.WaitTime then
+                        return true;
+                    end
+                end
+                return false;
             end
         }
     };

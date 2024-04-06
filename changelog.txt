@@ -2,4 +2,5 @@
 
 # Changelog:
 
-- *fix* Fixt einen Fehler bei der Marktplatzlieferung
+- *fix* Fehler beim Abspielen des Theaters
+- *added* Questdialoge wurden aus der 2.x übernommen

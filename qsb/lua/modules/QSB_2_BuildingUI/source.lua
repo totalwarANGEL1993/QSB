@@ -387,7 +387,7 @@ function ModuleBuildingButtons.Local:OverrideStartTheatrePlay()
             if Logic.CanStartTheatrePlay(EntityID) == true then
                 Sound.FXPlay2DSound("ui\\menu_click");
                 GUI.StartTheatrePlay(EntityID);
-                API.BroadcastScriptCommand(QSB.ScriptCommands.StartTheatrePlay, PlayerID);
+                API.BroadcastScriptCommand(QSB.ScriptCommands.StartTheatrePlay, EntityID, PlayerID);
             elseif CanBuyBoolean == false then
                 Message(CanNotBuyString);
             end

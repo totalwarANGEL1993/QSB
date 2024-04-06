@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Version 3.0.0.beta-1.1.7
+- *fix* Fehler beim Abspielen des Theaters
+- *added* Questdialoge wurden aus der 2.x übernommen
+
 ## Version 3.0.0.beta-1.1.6
 - *fix* Fixt einen Fehler bei der Marktplatzlieferung
 
