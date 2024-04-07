@@ -1,3 +1,17 @@
+
+---
+-- Dieses Addon erlaubt es Jägern Weidetiere zu jagen
+--
+-- <b>Vorausgesetzte Module:</b>
+-- <ul>
+-- <li><a href="qsb.html">(0) Basismodul</a></li>
+-- </ul>
+--
+-- @within Modulbeschreibung
+-- @set sort=true
+-- @author Eisenmonoxid
+--
+
 API = API or {}
 QSB.ScriptEvents = QSB.ScriptEvents or {}
 ---

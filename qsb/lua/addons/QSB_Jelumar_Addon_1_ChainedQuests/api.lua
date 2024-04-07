@@ -5,6 +5,9 @@
 -- <b>Vorausgesetzte Module:</b>
 -- <ul>
 -- <li><a href="qsb.html">(0) Basismodul</a></li>
+-- <li><a href="modules.QSB_1_GuiControl.QSB_1_GuiControl.html">(1) Anzeigekontrolle</a></li>
+-- <li><a href="modules.QSB_1_Requester.QSB_1_Requester.html">(1) Requester</a></li>
+-- <li><a href="modules.QSB_2_Quest.QSB_2_Quest.html">(2) Aufträge</a></li>
 -- </ul>
 --
 -- @within Modulbeschreibung
