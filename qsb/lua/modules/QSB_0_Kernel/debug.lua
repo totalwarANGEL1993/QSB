@@ -13,6 +13,9 @@ Swift.Debug = {
     TraceQuests          = false;
     DevelopingCheats     = false;
     DevelopingShell      = false;
+    Active               = false;
+    HistoryIndex         = 0;
+    History = {};
 };
 
 function Swift.Debug:Initalize()
@@ -122,11 +125,49 @@ function Swift.Debug:ProcessDebugShortcut(_Type, _Params)
             Framework.RestartMap();
         elseif _Type == "Terminal" then
             API.ShowTextInput(GUI.GetPlayerID(), true);
+            self.Active = true
+            self.HistoryIndex = 0
+            -- Last input
+            Input.KeyBindDown(
+                Keys.Up,
+                "Swift.Debug:GetOneHistoryEntryUp()",
+                30,
+                false
+            );
+            -- Next Input
+            Input.KeyBindDown(
+                Keys.Down,
+                "Swift.Debug:GetOneHistoryEntryDown()",
+                30,
+                false
+            );
+        end
+    end
+end
+
+function Swift.Debug:GetOneHistoryEntryUp()
+    local newIndex = self.HistoryIndex + 1
+    if self.History[newIndex] then
+        self.HistoryIndex = newIndex
+        XGUIEng.SetText("/InGame/Root/Normal/ChatInput/ChatInput", self.History[newIndex]);
+    end
+end
+
+function Swift.Debug:GetOneHistoryEntryDown()
+    local newIndex = self.HistoryIndex - 1
+    if newIndex >= 0 then
+        self.HistoryIndex = newIndex
+        if newIndex == 0 then
+            XGUIEng.SetText("/InGame/Root/Normal/ChatInput/ChatInput", "");
+        else
+            XGUIEng.SetText("/InGame/Root/Normal/ChatInput/ChatInput", self.History[newIndex]);
         end
     end
 end
 
 function Swift.Debug:ProcessDebugInput(_Input, _PlayerID, _DebugAllowed)
+    self.Active = false
+    table.insert(self.History, _Input)
     if _DebugAllowed then
         if _Input:lower():find("^restartmap") then
             self:ProcessDebugShortcut("RestartMap");

@@ -2,5 +2,5 @@
 
 # Changelog:
 
-- *fix* Fehler beim Abspielen des Theaters
-- *added* Questdialoge wurden aus der 2.x übernommen
+- *fix* Fehler in API.Message behoben
+- *added* In der Konsole kann nun mit den Pfeiltasten durch bisherige Befehle gewechselt werden

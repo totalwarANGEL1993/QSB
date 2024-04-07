@@ -366,11 +366,18 @@ end
 function API.Message(_Text, _Sound)
     _Text = Swift.Text:ConvertPlaceholders(Swift.Text:Localize(_Text));
     if not GUI then
-        Logic.ExecuteInLuaLocalState(string.format(
-            [[API.Message("%s", %s)]],
-            _Text,
-            _Sound
-        ));
+        if _Sound then
+            Logic.ExecuteInLuaLocalState(string.format(
+                [[API.Message("%s", %s)]],
+                _Text,
+                _Sound
+            ));
+        else
+            Logic.ExecuteInLuaLocalState(string.format(
+                [[API.Message("%s")]],
+                _Text
+            ));
+        end
         return;
     end
     _Text = Swift.Text:ConvertPlaceholders(API.Localize(_Text));

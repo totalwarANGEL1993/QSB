@@ -2,6 +2,11 @@
 # Changelog
 
 ## Version 3.0.0.beta-1.1.7
+
+- *fix* Fehler in API.Message behoben
+- *added* In der Konsole kann nun mit den Pfeiltasten durch bisherige Befehle gewechselt werden
+
+## Version 3.0.0.beta-1.1.7
 - *fix* Fehler beim Abspielen des Theaters
 - *added* Questdialoge wurden aus der 2.x übernommen
 
