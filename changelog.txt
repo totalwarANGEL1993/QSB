@@ -2,5 +2,5 @@
 
 # Changelog:
 
-- *fix* Fehler in API.Message behoben
-- *added* In der Konsole kann nun mit den Pfeiltasten durch bisherige Befehle gewechselt werden
+- *fix* Befehle stop start win fail und restart sollten nun über die Konsole wieder gehen
+- *fix* Reihenfolge alter Konsolenbefehle

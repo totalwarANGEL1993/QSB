@@ -1,7 +1,12 @@
 
 # Changelog
 
-## Version 3.0.0.beta-1.1.7
+## Version 3.0.0.beta-1.1.9
+
+- *fix* Befehle stop start win fail und restart sollten nun über die Konsole wieder gehen
+- *fix* Reihenfolge alter Konsolenbefehle
+
+## Version 3.0.0.beta-1.1.8
 
 - *fix* Fehler in API.Message behoben
 - *added* In der Konsole kann nun mit den Pfeiltasten durch bisherige Befehle gewechselt werden

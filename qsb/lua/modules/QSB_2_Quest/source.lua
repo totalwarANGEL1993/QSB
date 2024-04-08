@@ -606,27 +606,27 @@ end
 function ModuleQuest.Global:ProcessChatInput(_Text, _PlayerID, _IsDebug)
     local Commands = Swift.Text:CommandTokenizer(_Text);
     for i= 1, #Commands, 1 do
-        if Commands[1] == "fail" or Commands[1] == "restart"
-        or Commands[1] == "start" or Commands[1] == "stop"
-        or Commands[1] == "win" then
-            local FoundQuests = self:FindQuestNames(Commands[2], true);
+        if Commands[i][1] == "fail" or Commands[i][1] == "restart"
+        or Commands[i][1] == "start" or Commands[i][1] == "stop"
+        or Commands[i][1] == "win" then
+            local FoundQuests = self:FindQuestNames(Commands[i][2], true);
             if #FoundQuests ~= 1 then
-                error("Unable to find quest containing '" ..Commands[2].. "'");
+                error("Unable to find quest containing '" ..Commands[i][2].. "'");
                 return;
             end
-            if Commands[1] == "fail" then
+            if Commands[i][1] == "fail" then
                 API.FailQuest(FoundQuests[1]);
                 info("fail quest '" ..FoundQuests[1].. "'");
-            elseif Commands[1] == "restart" then
+            elseif Commands[i][1] == "restart" then
                 API.RestartQuest(FoundQuests[1]);
                 info("restart quest '" ..FoundQuests[1].. "'");
-            elseif Commands[1] == "start" then
+            elseif Commands[i][1] == "start" then
                 API.StartQuest(FoundQuests[1]);
                 info("trigger quest '" ..FoundQuests[1].. "'");
-            elseif Commands[1] == "stop" then
+            elseif Commands[i][1] == "stop" then
                 API.StopQuest(FoundQuests[1]);
                 info("interrupt quest '" ..FoundQuests[1].. "'");
-            elseif Commands[1] == "win" then
+            elseif Commands[i][1] == "win" then
                 API.WinQuest(FoundQuests[1]);
                 info("win quest '" ..FoundQuests[1].. "'");
             end

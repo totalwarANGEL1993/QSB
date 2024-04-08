@@ -167,7 +167,7 @@ end
 
 function Swift.Debug:ProcessDebugInput(_Input, _PlayerID, _DebugAllowed)
     self.Active = false
-    table.insert(self.History, _Input)
+    table.insert(self.History, 1, _Input)
     if _DebugAllowed then
         if _Input:lower():find("^restartmap") then
             self:ProcessDebugShortcut("RestartMap");
