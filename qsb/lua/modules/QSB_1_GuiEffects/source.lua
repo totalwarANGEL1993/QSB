@@ -241,6 +241,10 @@ function ModuleGuiEffects.Global:PlayTypewriter(_Data)
         _Data.Color.A or 255,
         _Data.TargetEntity
     ));
+	
+	if EMXHookLibrary and EMXHookLibrary.ToggleRTSCameraMouseRotation then
+        EMXHookLibrary.ToggleRTSCameraMouseRotation(false)
+    end
 
     API.SendScriptEvent(QSB.ScriptEvents.TypewriterStarted, _Data.PlayerID, _Data);
     Logic.ExecuteInLuaLocalState(string.format(
@@ -271,6 +275,11 @@ function ModuleGuiEffects.Global:FinishTypewriter(_PlayerID)
             ]],
             _PlayerID
         ));
+		
+        if EMXHookLibrary and EMXHookLibrary.ToggleRTSCameraMouseRotation then
+            EMXHookLibrary.ToggleRTSCameraMouseRotation(true)
+        end
+		
         API.SendScriptEvent(QSB.ScriptEvents.TypewriterEnded, EventPlayer, EventData);
         Logic.ExecuteInLuaLocalState(string.format(
             [[API.SendScriptEvent(QSB.ScriptEvents.TypewriterEnded, %d, %s)]],
@@ -530,12 +539,8 @@ function ModuleGuiEffects.Local:InterfaceDeactivateBorderScroll(_PlayerID, _Posi
     end
     Camera.RTS_SetBorderScrollSize(0);
     Camera.RTS_SetZoomWheelSpeed(0);
-	Camera.RTS_SetRotationSpeed(0);
+    Camera.RTS_SetRotationSpeed(0);
 	
-	if EMXHookLibrary and EMXHookLibrary.ToggleRTSCameraMouseRotation then
-		EMXHookLibrary.ToggleRTSCameraMouseRotation(false)
-	end
-
     API.SendScriptEventToGlobal("BorderScrollLocked", _PlayerID, (_PositionID or 0));
     API.SendScriptEvent(QSB.ScriptEvents.BorderScrollLocked, _PlayerID, _PositionID);
 end
@@ -548,12 +553,8 @@ function ModuleGuiEffects.Local:InterfaceActivateBorderScroll(_PlayerID)
     Camera.RTS_FollowEntity(0);
     Camera.RTS_SetBorderScrollSize(3.0);
     Camera.RTS_SetZoomWheelSpeed(4.2);
-	Camera.RTS_SetRotationSpeed(90);
+    Camera.RTS_SetRotationSpeed(90);
 	
-	if EMXHookLibrary and EMXHookLibrary.ToggleRTSCameraMouseRotation then
-		EMXHookLibrary.ToggleRTSCameraMouseRotation(true)
-	end
-
     API.SendScriptEventToGlobal("BorderScrollReset", _PlayerID);
     API.SendScriptEvent(QSB.ScriptEvents.BorderScrollReset, _PlayerID);
 end
