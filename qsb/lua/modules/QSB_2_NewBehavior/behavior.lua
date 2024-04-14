@@ -1031,6 +1031,102 @@ end
 Swift:RegisterBehavior(B_Goal_DestroySoldiers);
 
 -- -------------------------------------------------------------------------- --
+
+---
+-- Lässt den Spieler zwischen zwei Antworten wählen.
+--
+-- Dabei kann zwischen den Labels Ja/Nein und Ok/Abbrechen gewählt werden.
+--
+-- <b>Hinweis:</b> Es können nur geschlossene Fragen gestellt werden. Dialoge
+-- müssen also immer mit Ja oder Nein beantwortbar sein oder auf Okay und
+-- Abbrechen passen.
+--
+-- @param _Text   Fenstertext
+-- @param _Title  Fenstertitel
+-- @param _Labels Label der Buttons
+--
+-- @within Goal
+--
+function Goal_Decide(...)
+    return B_Goal_Decide:new(...);
+end
+
+B_Goal_Decide = {
+    Name = "Goal_Decide",
+    Description = {
+        en = "Opens a Yes/No Dialog. Decision = Quest Result",
+        de = "Oeffnet einen Ja/Nein-Dialog. Die Entscheidung bestimmt das Quest-Ergebnis (ja=true, nein=false).",
+        fr = "Ouvre une Fenètre avec un choix pour le joueur. ",
+    },
+    Parameter = {
+        { ParameterType.Default, en = "Text",          de = "Text",                fr = "Text", },
+        { ParameterType.Default, en = "Title",         de = "Titel",               fr = "Titre", },
+        { ParameterType.Custom,  en = "Button labels", de = "Button Beschriftung", fr = "Text des Boutons", },
+    },
+}
+
+function B_Goal_Decide:GetGoalTable()
+    return { Objective.Custom2, { self, self.CustomFunction } }
+end
+
+function B_Goal_Decide:AddParameter( _Index, _Parameter )
+    if (_Index == 0) then
+        self.Text = _Parameter
+    elseif (_Index == 1) then
+        self.Title = _Parameter
+    elseif (_Index == 2) then
+        self.Buttons = (_Parameter == "Ok/Cancel")
+    end
+end
+
+function B_Goal_Decide:CustomFunction(_Quest)
+    if not API.IsCinematicEventActive(1) then
+        if not self.LocalExecuted then
+            if QSB.DialogActive then
+                return;
+            end
+            QSB.DialogActive = true
+            local buttons = (self.Buttons and "true") or "nil"
+            self.LocalExecuted = true
+
+            local commandString = [[
+                Game.GameTimeSetFactor( GUI.GetPlayerID(), 0 )
+                OpenRequesterDialog(%q,
+                                    %q,
+                                    "Game.GameTimeSetFactor( GUI.GetPlayerID(), 1 ); GUI.SendScriptCommand( 'QSB.DecisionWindowResult = true ')",
+                                    %s ,
+                                    "Game.GameTimeSetFactor( GUI.GetPlayerID(), 1 ); GUI.SendScriptCommand( 'QSB.DecisionWindowResult = false ')")
+            ]];
+            local commandString = string.format(commandString, self.Text, "{center} " .. self.Title, buttons)
+            Logic.ExecuteInLuaLocalState(commandString);
+
+        end
+        local result = QSB.DecisionWindowResult
+        if result ~= nil then
+            QSB.DecisionWindowResult = nil
+            QSB.DialogActive = false;
+            return result
+        end
+    end
+end
+
+function B_Goal_Decide:GetIcon()
+    return {4,12}
+end
+
+function B_Goal_Decide:GetCustomData(_Index)
+    if _Index == 2 then
+        return { "Yes/No", "Ok/Cancel" }
+    end
+end
+
+function B_Goal_Decide:Reset()
+    self.LocalExecuted = nil;
+end
+
+Swift:RegisterBehavior(B_Goal_Decide);
+
+-- -------------------------------------------------------------------------- --
 -- Reprisals                                                                  --
 -- -------------------------------------------------------------------------- --
 

@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Version 3.0.0.beta-1.1.10
+
+- *added* Es wurde der Goal_Decide wiedereingebaut
+
 ## Version 3.0.0.beta-1.1.9
 
 - *fix* Befehle stop start win fail und restart sollten nun über die Konsole wieder gehen
