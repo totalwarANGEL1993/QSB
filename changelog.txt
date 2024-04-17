@@ -2,4 +2,4 @@
 
 # Changelog:
 
-- *added* Es wurde der Goal_Decide wiedereingebaut
+- *fix* Typewriter gefixt.
