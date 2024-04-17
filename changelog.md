@@ -1,5 +1,8 @@
 
 # Changelog
+## Version 3.0.0.beta-1.1.11
+
+- *fix* Typewriter gefixt.
 
 ## Version 3.0.0.beta-1.1.10
 
