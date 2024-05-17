@@ -2,4 +2,4 @@
 
 # Changelog:
 
-- *fix* Typewriter gefixt.
+- *added* API.UnlockTitleForPlayer aus QSB2.

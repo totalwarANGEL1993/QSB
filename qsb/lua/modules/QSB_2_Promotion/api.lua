@@ -625,6 +625,23 @@ function API.CanKnightBePromoted(_PlayerID, _KnightTitle)
 end
 
 ---
+-- Diese Funktion ermöglicht das sichere Entsperren eines gesperrten Titels.
+--
+-- <p><b>Alias:</b> UnlockTitleForPlayer</p>
+--
+-- @param[type=number] _PlayerID Zielpartei
+-- @param[type=number] _KnightTitle Titel zum Entsperren
+-- @within Anwenderfunktionen
+--
+function API.UnlockTitleForPlayer(_PlayerID, _KnightTitle)
+    if GUI then
+        return;
+    end
+    return ModuleKnightTitleRequirements.Global:UnlockTitleForPlayer(_PlayerID, _KnightTitle);
+end
+UnlockTitleForPlayer = API.UnlockTitleForPlayer;
+
+---
 -- Der Spieler gewinnt das Spiel
 -- @within Originalfunktionen
 -- @local

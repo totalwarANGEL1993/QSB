@@ -78,6 +78,34 @@ function ModuleKnightTitleRequirements.Global:OverwriteConsumedGoods()
     end
 end
 
+
+---
+-- Entsperrt einen gesperrten Titel für den Spieler.
+--
+-- @param[type=number] _PlayerID Zielpartei
+-- @param[type=number] _KnightTitle Titel zum Entsperren
+-- @within Internal
+-- @local
+--
+function ModuleKnightTitleRequirements.Global:UnlockTitleForPlayer(_PlayerID, _KnightTitle)
+    if LockedKnightTitles[_PlayerID] == _KnightTitle
+    then
+        LockedKnightTitles[_PlayerID] = nil;
+        for KnightTitle= _KnightTitle, #NeedsAndRightsByKnightTitle
+        do
+            local TechnologyTable = NeedsAndRightsByKnightTitle[KnightTitle][4];
+            if TechnologyTable ~= nil
+            then
+                for i=1, #TechnologyTable
+                do
+                    local TechnologyType = TechnologyTable[i];
+                    Logic.TechnologySetState(_PlayerID, TechnologyType, TechnologyStates.Unlocked);
+                end
+            end
+        end
+    end
+end
+
 -- Local Script ------------------------------------------------------------- --
 
 function ModuleKnightTitleRequirements.Local:OnGameStart()

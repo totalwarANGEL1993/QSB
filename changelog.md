@@ -1,5 +1,11 @@
 
 # Changelog
+
+
+## Version 3.0.0.beta-1.1.12
+
+- *added* API.UnlockTitleForPlayer aus QSB2.
+
 ## Version 3.0.0.beta-1.1.11
 
 - *fix* Typewriter gefixt.
