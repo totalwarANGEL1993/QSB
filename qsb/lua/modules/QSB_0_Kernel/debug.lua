@@ -223,6 +223,105 @@ end
 -- Die Chat-Eingabe kann zur Eingabe von Befehlen genutzt werden. </li>
 -- </ul>
 --
+-- <h3>Konsolenbefehle</h3>
+-- <table border=1>
+-- <tr>
+-- <th><b>Befehl</b></th>
+-- <th><b>Parameter</b></th>
+-- <th><b>Beschreibung</b></th>
+-- </tr>
+-- <tr>
+-- <td>clear</td>
+-- <td></td>
+-- <td>Entfernt alle Textnachrichten im Debug-Window.</td>
+-- </tr>
+-- <tr>
+-- <td>restartmap</td>
+-- <td></td>
+-- <td>Startet die Map sofort neu.</td>
+-- </tr>
+-- <tr>
+-- <td>version</td>
+-- <td></td>
+-- <td>Zeigt die Version der QSB an.</td>
+-- </tr>
+-- <tr>
+-- <td>stop</td>
+-- <td>QuestName</td>
+-- <td>Unterbricht den angegebenen Quest.</td>
+-- </tr>
+-- <tr>
+-- <td>start</td>
+-- <td>QuestName</td>
+-- <td>Startet den angegebenen Quest.</td>
+-- </tr>
+-- <tr>
+-- <td>win</td>
+-- <td>QuestName</td>
+-- <td>Schließt den angegebenen Quest erfolgreich ab.</td>
+-- </tr>
+-- <tr>
+-- <td>fail</td>
+-- <td>QuestName</td>
+-- <td>Lässt den angegebenen Quest fehlschlagen</td>
+-- </tr>
+-- <tr>
+-- <td>restart</td>
+-- <td>QuestName</td>
+-- <td>Startet den angegebenen Quest neu.</td>
+-- </tr>
+-- <tr>
+-- <td>stopped</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen abgebrochener Quests zurück.</td>
+-- </tr>
+-- <tr>
+-- <td>active</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen aktiver Quests zurück.</td>
+-- </tr>
+-- <tr>
+-- <td>won</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen gewonnener Quests zurück.</td>
+-- </tr>
+-- <tr>
+-- <td>failed</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen fehlgeschlagener Quests zurück.</td>
+-- </tr>
+-- <tr>
+-- <td>waiting</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen nicht ausgelöster Quests zurück.</td>
+-- </tr>
+-- <tr>
+-- <td>find</td>
+-- <td>Pattern</td>
+-- <td>Gibt die Namen von Quests mit ähnlichen Namen zurück.</td>
+-- </tr>
+-- <tr>
+-- <td><</td>
+-- <td>Path</td>
+-- <td>Läd ein Skript zur Laufzeit ins globale Skript.</td>
+-- </tr>
+-- <tr>
+-- <td><<</td>
+-- <td>Path</td>
+-- <td>Läd ein Skript zur Laufzeit ins lokale Skript.</td>
+-- </tr>
+-- <tr>
+-- <td>></td>
+-- <td>Command</td>
+-- <td>Führt die Eingabe als Lua-Befahl im globalen Skript aus.</td>
+-- </tr>
+-- <tr>
+-- <td>>></td>
+-- <td>Command</td>
+-- <td>Führt die Eingabe als Lua-Befahl im lokalen Skript aus.</td>
+-- </tr>
+-- </table>
+--
 -- @param[type=boolean] _CheckAtRun       Custom Behavior prüfen an/aus
 -- @param[type=boolean] _TraceQuests      Quest Trace an/aus
 -- @param[type=boolean] _DevelopingCheats Cheats an/aus

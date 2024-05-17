@@ -6,6 +6,7 @@
 
 - *added* API.UnlockTitleForPlayer aus QSB2.
 - *added* History Edition Editor Sprachenfix.
+- *added* Konsolenbefehle won, failed, stopped, active, waiting und find
 
 ## Version 3.0.0.beta-1.1.11
 

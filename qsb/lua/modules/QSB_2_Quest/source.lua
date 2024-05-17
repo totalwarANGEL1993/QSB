@@ -631,7 +631,69 @@ function ModuleQuest.Global:ProcessChatInput(_Text, _PlayerID, _IsDebug)
                 info("win quest '" ..FoundQuests[1].. "'");
             end
         end
+
+        if Commands[i][1] == "stopped" then
+            info( self:FindQuestsByState(QuestResult.Interrupted) )
+        elseif Commands[i][1] == "active" then
+            info( self:FindQuestsByState(QuestResult.Active) )
+        elseif Commands[i][1] == "won" then
+            info( self:FindQuestsByState(QuestResult.Success) )
+        elseif Commands[i][1] == "failed" then
+            info( self:FindQuestsByState(QuestResult.Failure) )
+        elseif Commands[i][1] == "waiting" then
+            info( self:FindQuestsByState(QuestResult.NotTriggered) )
+        elseif Commands[i][1] == "find" then
+            info( self:FindQuestsByNamePart(Commands[i]) )
+        end
     end
+end
+
+function ModuleQuest.Global:FindQuestsByNamePart(_Data)
+    local FoundQuests = self:FindQuestNames(_Data[2], false);
+
+    local QuestNames = "";
+    local Matching = 0;
+    for i= 1, #FoundQuests, 1 do
+        if Matching < 15 then
+            if _Data[2] then
+                if string.find(FoundQuests[i], _Data[2]) then
+                    QuestNames = QuestNames .. "- " .. FoundQuests[i] .. "{cr}";
+                    Matching = Matching +1;
+                end
+            else
+                QuestNames = QuestNames .. "- " .. FoundQuests[i] .. "{cr}";
+                Matching = Matching +1;
+            end
+        else
+            QuestNames = QuestNames .. "... (" .. (#FoundQuests-Matching) .. " more)";
+            break;
+        end
+    end
+
+    return "Found quests:{cr}"..QuestNames;
+end
+
+function ModuleQuest.Global:FindQuestsByState(_QuestState)
+    local QuestsOfState = {};
+    for i= 1, Quests[0], 1 do
+        if Quests[i].Result == _QuestState then
+            table.insert(QuestsOfState, Quests[i]);
+        end
+    end
+
+    local QuestNames = "";
+    local Matching = 0;
+    for i= 1, #QuestsOfState, 1 do
+        if Matching < 15 then
+            QuestNames = QuestNames .. "- " .. QuestsOfState[i].Identifier .. "{cr}";
+            Matching = Matching +1;
+        else
+            QuestNames = QuestNames .. "... (" .. (#QuestsOfState-Matching) .. " more)";
+            break;
+        end
+    end
+
+    return "Found quests:{cr}"..QuestNames;
 end
 
 -- -------------------------------------------------------------------------- --
