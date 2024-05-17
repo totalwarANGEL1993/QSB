@@ -5,6 +5,7 @@
 ## Version 3.0.0.beta-1.1.12
 
 - *added* API.UnlockTitleForPlayer aus QSB2.
+- *added* History Edition Editor Sprachenfix.
 
 ## Version 3.0.0.beta-1.1.11
 

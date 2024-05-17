@@ -1,9 +1,15 @@
 --[[
-The QSB is created and maintained by the Siedelwood Community.
+    The QSB is created and maintained by the Siedelwood Community.
 
-You may use and modify any part of it under the terms of the MIT licence.
-(See https://en.wikipedia.org/wiki/MIT_License)
+    You may use and modify any part of it under the terms of the MIT licence.
+    (See https://en.wikipedia.org/wiki/MIT_License)
 ]]
+
+--[[    EDITOR
+    If you are using the History Edition Editor and want the Quests descriptions
+    to be english you need to change the following variable to "en".
+]]
+HistoryEdition_EditorLanguage = "de"
 
 -- -------------------------------------------------------------------------- --
 
@@ -11,7 +17,7 @@ API = {};
 SCP = {Core = {}};
 
 QSB = {};
-QSB.Version = "3.0.0.beta-1.1.8 - 07.04.2024";
+QSB.Version = "3.0.0.beta-1.1.12 - 16.05.2024";
 
 ---
 -- Stellt wichtige Kernfunktionen bereit.
@@ -739,6 +745,11 @@ function Swift:RegisterBehavior(_Behavior)
             return;
         end
     end
+
+    if HistoryEdition_EditorLanguage == "de" then
+        _Behavior.Description.en = _Behavior.Description.de	
+    end
+
     table.insert(g_QuestBehaviorTypes, _Behavior);
     table.insert(self.BehaviorRegister, _Behavior);
 end
