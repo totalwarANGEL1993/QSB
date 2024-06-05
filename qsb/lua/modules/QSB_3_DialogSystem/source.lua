@@ -605,7 +605,7 @@ function ModuleDialogSystem.Local:DisplayPageTitle(_PlayerID, _PageID)
     local Page = self.Dialog[_PlayerID][_PageID];
     if Page.Title then
         local Title = API.ConvertPlaceholders(Page.Title);
-        if Title:find("^[A-Za-Z0-9_]+/[A-Za-Z0-9_]+$") then
+        if Title:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
             Title = XGUIEng.GetStringTableText(Title);
         end
         if Title:sub(1, 1) ~= "{" then

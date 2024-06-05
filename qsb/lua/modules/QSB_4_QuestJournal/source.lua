@@ -111,6 +111,7 @@ function ModuleQuestJournal.Global:FormatJournalEntry(_QuestName, _PlayerID)
         local SeperateImportant = false;
         local SeperateNormal = false;
         local Info = "";
+        local Color = "";
         for i= 1, #Journal, 1 do
             if Journal[i].AlwaysVisible or Journal[i].Quests[_QuestName] then
                 if not Journal[i].Deleted then
@@ -128,7 +129,6 @@ function ModuleQuestJournal.Global:FormatJournalEntry(_QuestName, _PlayerID)
                         SeperateNormal = true;
                     end
                     if Journal[i].Rank == -1 then
-                        local Color = "";
                         if SeperateNormal then
                             SeperateNormal = false;
                             Color = "{violet}";

@@ -290,34 +290,34 @@ end
 function ModuleObjectInteraction.Global:ProcessChatInput(_Text)
     local Commands = Swift.Text:CommandTokenizer(_Text);
     for i= 1, #Commands, 1 do
-        if Commands[1] == "enableobject" then
-            local State = (Commands[3] and tonumber(Commands[3])) or nil;
-            local PlayerID = (Commands[4] and tonumber(Commands[4])) or nil;
-            if not IsExisting(Commands[2]) then
-                error("object " ..Commands[2].. " does not exist!");
+        if Commands[i][1] == "enableobject" then
+            local State = (Commands[i][3] and tonumber(Commands[i][3])) or nil;
+            local PlayerID = (Commands[i][4] and tonumber(Commands[i][4])) or nil;
+            if not IsExisting(Commands[i][2]) then
+                error("object " ..Commands[i][2].. " does not exist!");
                 return;
             end
-            API.InteractiveObjectActivate(Commands[2], State, PlayerID);
-            info("activated object " ..Commands[2].. ".");
-        elseif Commands[1] == "disableobject" then
-            local PlayerID = (Commands[3] and tonumber(Commands[3])) or nil;
-            if not IsExisting(Commands[2]) then
-                error("object " ..Commands[2].. " does not exist!");
+            API.InteractiveObjectActivate(Commands[i][2], State, PlayerID);
+            info("activated object " ..Commands[i][2].. ".");
+        elseif Commands[i][1] == "disableobject" then
+            local PlayerID = (Commands[i][3] and tonumber(Commands[i][3])) or nil;
+            if not IsExisting(Commands[i][2]) then
+                error("object " ..Commands[i][2].. " does not exist!");
                 return;
             end
-            API.InteractiveObjectDeactivate(Commands[2], PlayerID);
-            info("deactivated object " ..Commands[2].. ".");
-        elseif Commands[1] == "initobject" then
-            if not IsExisting(Commands[2]) then
-                error("object " ..Commands[2].. " does not exist!");
+            API.InteractiveObjectDeactivate(Commands[i][2], PlayerID);
+            info("deactivated object " ..Commands[i][2].. ".");
+        elseif Commands[i][1] == "initobject" then
+            if not IsExisting(Commands[i][2]) then
+                error("object " ..Commands[i][2].. " does not exist!");
                 return;
             end
             API.SetupObject({
-                Name     = Commands[2],
+                Name     = Commands[i][2],
                 Waittime = 0,
                 State    = 0
             });
-            info("quick initalization of object " ..Commands[2].. ".");
+            info("quick initalization of object " ..Commands[i][2].. ".");
         end
     end
 end
