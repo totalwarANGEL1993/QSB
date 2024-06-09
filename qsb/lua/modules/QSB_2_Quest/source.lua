@@ -606,9 +606,11 @@ end
 function ModuleQuest.Global:ProcessChatInput(_Text, _PlayerID, _IsDebug)
     local Commands = Swift.Text:CommandTokenizer(_Text);
     for i= 1, #Commands, 1 do
-        if Commands[i][1] == "fail" or Commands[i][1] == "restart"
-        or Commands[i][1] == "start" or Commands[i][1] == "stop"
-        or Commands[i][1] == "win" then
+        if Commands[i][1] == "fail"
+            or Commands[i][1] == "start"
+            or Commands[i][1] == "restart"
+            or Commands[i][1] == "stop"
+            or Commands[i][1] == "win" then
             local FoundQuests = self:FindQuestNames(Commands[i][2], true);
             if #FoundQuests ~= 1 then
                 error("Unable to find quest containing '" ..Commands[i][2].. "'");
@@ -700,6 +702,7 @@ end
 -- Local
 
 function ModuleQuest.Local:OnGameStart()
+    self:OverwriteQuestTexts();
 end
 
 function ModuleQuest.Local:OnEvent(_ID, ...)
@@ -719,6 +722,120 @@ function ModuleQuest.Local:ProcessChatInput(_Text, _PlayerID, _IsDebug)
         [[ModuleQuest.Global:ProcessChatInput("%s", %d, %s)]],
         _Text, _PlayerID, tostring(_IsDebug == true)
     ));
+end
+
+function ModuleQuest.Local:OverwriteQuestTexts()
+    self.Orig_QuestLog_GetQuestTypeCaption = QuestLog.GetQuestTypeCaption;
+    --- Returns the caption of the quest in the quest log.
+    ---
+    --- This overwrite allows to define custom string tables instead of the
+    --- scheme dictated by the game.
+    ---
+    --- @param _QuestType integer Type of quest
+    --- @param _Quest table Quest
+    --- @return string Text String table text 
+    ---
+    --- @diagnostic disable-next-line: duplicate-set-field
+    QuestLog.GetQuestTypeCaption = function(_QuestType, _Quest)
+        if _QuestType == Objective.Custom
+        or _QuestType == Objective.Custom2
+        or _QuestType == Objective.NoChange
+        or _QuestType == Objective.Dummy
+        or _QuestType == Objective.DummyFail then
+            local Text = _Quest.QuestDescription or "";
+            if string.find(Text, "^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
+                return XGUIEng.GetStringTableText(Text);
+            end
+        end
+        return ModuleQuest.Local.Orig_QuestLog_GetQuestTypeCaption(_QuestType, _Quest);
+    end
+
+    --- Returns the string table text of the quest.
+    ---
+    --- This overwrite allows to define custom string tables instead of the
+    --- scheme dictated by the game.
+    ---
+    --- @param _QuestIndex integer Index of quest
+    --- @param _MessageKey string String table key of message
+    --- @return string Text String table text
+    Wrapped_GetStringTableText = function(_QuestIndex, _MessageKey)
+        local MessageText = XGUIEng.GetStringTableText(_MessageKey);
+        if MessageText ~= "" then
+            return MessageText;
+        end
+        if _QuestIndex == 0 then
+            return "";
+        end
+        local Quest = Quests[_QuestIndex];
+        if not Quest then
+            return "";
+        end
+        if string.find(_MessageKey, "speech") then
+            local MessageKeyPos = string.find(_MessageKey, "/");
+            if not MessageKeyPos then
+                return "";
+            end
+            local MessageKey = string.sub(_MessageKey, MessageKeyPos + 1)
+            if  Quest.Identifier == MessageKey
+            and Quest.QuestStartMsg
+            and not string.find(Quest.QuestStartMsg, g_OverrideTextKeyPattern) then
+                return Quest.QuestStartMsg;
+            end
+            if  Quest.Identifier .. "_Success" == MessageKey
+            and Quest.QuestSuccessMsg
+            and not string.find(Quest.QuestSuccessMsg, g_OverrideTextKeyPattern) then
+                return Quest.QuestSuccessMsg;
+            end
+            if Quest.Identifier .. "_Failure" == MessageKey
+            and Quest.QuestFailureMsg
+            and not string.find(Quest.QuestFailureMsg, g_OverrideTextKeyPattern) then
+                return Quest.QuestFailureMsg;
+            end
+        else
+            if Quest.QuestDescription then
+                local Text = Quest.QuestDescription or "";
+                if string.find(Text, "^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
+                    Text = XGUIEng.GetStringTableText(Text);
+                end
+                return string.match(Text, "^[^~]+ ~ (.+)$") or Text;
+            end
+        end
+        return "";
+    end
+
+    GetTextOverride = function(_Quest)
+        assert(type(_Quest) == "table");
+
+        local Result;
+        if _Quest.State == QuestState.Over then
+            if _Quest.Result == QuestResult.Success then
+                local Text = _Quest.QuestSuccessMsg or "";
+                if string.find(Text, "^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
+                    Text = "KEY(" .._Quest.QuestSuccessMsg.. ")";
+                end
+                Result = string.match(Text, g_OverrideTextKeyPattern);
+            elseif _Quest.Result == QuestResult.Failure then
+                local Text = _Quest.QuestFailureMsg or "";
+                if string.find(Text, "^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
+                    Text = "KEY(" .._Quest.QuestFailureMsg.. ")";
+                end
+                Result = string.match(Text, g_OverrideTextKeyPattern);
+            end
+        else
+            local Text = _Quest.QuestStartMsg or "";
+            if string.find(Text, "^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
+                Text = "KEY(" .._Quest.QuestStartMsg.. ")";
+            end
+            Result = string.match(Text, g_OverrideTextKeyPattern);
+        end
+        if Result then
+            local OverrideTable, OverrideKey = string.match( Result, "^([^/]+)/([^/]+)$" )
+            if OverrideTable and OverrideKey then
+                return OverrideKey, OverrideTable;
+            end
+        end
+        return Result;
+    end
 end
 
 -- -------------------------------------------------------------------------- --

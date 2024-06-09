@@ -691,7 +691,7 @@ function ModuleBriefingSystem.Local:DisplayPageTitle(_PlayerID, _PageID)
     XGUIEng.SetText(TitleWidget, "");
     if Page.Title then
         local Title = API.ConvertPlaceholders(Page.Title);
-        if Title:find("^[A-Za-Z0-9_]+/[A-Za-Z0-9_]+$") then
+        if Title:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
             Title = XGUIEng.GetStringTableText(Title);
         end
         if Title:sub(1, 1) ~= "{" then
@@ -707,7 +707,7 @@ function ModuleBriefingSystem.Local:DisplayPageText(_PlayerID, _PageID)
     XGUIEng.SetText(TextWidget, "");
     if Page.Text then
         local Text = API.ConvertPlaceholders(Page.Text);
-        if Text:find("^[A-Za-Z0-9_]+/[A-Za-Z0-9_]+$") then
+        if Text:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
             Text = XGUIEng.GetStringTableText(Text);
         end
         if Text:sub(1, 1) ~= "{" then
