@@ -633,15 +633,15 @@ function ModuleQuest.Global:ProcessChatInput(_Text, _PlayerID, _IsDebug)
         end
 
         if Commands[i][1] == "stopped" then
-            info( self:FindQuestsByState(QuestResult.Interrupted) )
+            info( self:FindQuestsByState(QuestState.Interrupted) )
         elseif Commands[i][1] == "active" then
-            info( self:FindQuestsByState(QuestResult.Active) )
+            info( self:FindQuestsByState(QuestState.Active) )
         elseif Commands[i][1] == "won" then
-            info( self:FindQuestsByState(QuestResult.Success) )
+            info( self:FindQuestsByState(QuestState.Success) )
         elseif Commands[i][1] == "failed" then
-            info( self:FindQuestsByState(QuestResult.Failure) )
+            info( self:FindQuestsByState(QuestState.Failure) )
         elseif Commands[i][1] == "waiting" then
-            info( self:FindQuestsByState(QuestResult.NotTriggered) )
+            info( self:FindQuestsByState(QuestState.NotTriggered) )
         elseif Commands[i][1] == "find" then
             info( self:FindQuestsByNamePart(Commands[i]) )
         end
