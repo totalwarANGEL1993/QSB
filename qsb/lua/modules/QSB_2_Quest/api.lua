@@ -324,6 +324,11 @@ QuestMessage = API.CreateQuestMessage;
 -- Diese Funktion ist geeignet um längere Quest-Dialoge zu konfigurieren!
 --
 -- <b>Alias</b>: QuestDialog
+-- 
+-- <b>Wichtiger Hinweis</b>
+-- Da es bei der Nutzung dieser Funktion zu dem Fehler mit dem Meldungsstau kommen
+-- kann, wird hier empfohlen eher das Dialog System zu verwendet, da es dort nicht
+-- dazu kommen kann..
 --
 -- Einzelne Parameter pro Eintrag:
 -- <ul>
