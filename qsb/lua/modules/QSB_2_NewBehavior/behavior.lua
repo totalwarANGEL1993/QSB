@@ -1041,6 +1041,12 @@ Swift:RegisterBehavior(B_Goal_DestroySoldiers);
 -- müssen also immer mit Ja oder Nein beantwortbar sein oder auf Okay und
 -- Abbrechen passen.
 --
+-- <b>Warnung:</b> Nutzung auf eigene Gefahr
+-- Dieses Behavior hat folgende Probleme die auftreten können:
+-- - Kann nicht in mehreren Quests verwendet werden
+-- - Kann zu Störungen führen, wenn Popup auf andere Weise angezeigt wird
+-- - Kann nicht im Multiplayer verwendet werden
+--
 -- @param _Text   Fenstertext
 -- @param _Title  Fenstertitel
 -- @param _Labels Label der Buttons
