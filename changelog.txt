@@ -2,6 +2,11 @@
 
 # Changelog:
 
-- *added* API.UnlockTitleForPlayer aus QSB2.
-- *added* History Edition Editor Sprachenfix.
-- *added* Konsolenbefehle won, failed, stopped, active, waiting und find
+- *fix* Fehler bei dem manche Konsolenbefehle nie aufgerufen werden konnten wegen eines falschen Vergleichs
+- *fix* Falscher Index in Behavior Konstruktor
+- *fix* Violette Farbe wird nun dem Nutzerinput im Questjournal korrekt zugewiesen
+- *fix* Falscher Index in allen :ProcessChatInput Methoden
+- *fix* Falscher Zeichenbereich in den Regular-Expressions
+- *added* Quests nutzen jetzt das gleiche Format für string tables
+- *fix* Fehler beim Ersetzen-Parameter der Interaktiven Objekte
+- *added* Hinweise zu Probleme bei der Nutzung mancher Funktionen wurden erweitert

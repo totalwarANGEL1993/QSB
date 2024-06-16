@@ -76,6 +76,9 @@ function ModuleObjectInteraction.Global:OnObjectInteraction(_ScriptName, _Knight
         if IO[_ScriptName].Action then
             IO[_ScriptName]:Action(_PlayerID, _KnightID);
         end
+        if GetNameOfKeyInTable(Entities, IO[_ScriptName].Replacement) then
+            API.ReplaceEntity(_ScriptName, IO[_ScriptName].Replacement)
+        end
     end
 end
 
@@ -181,9 +184,10 @@ function ModuleObjectInteraction.Global:SetupObject(_Object)
     local CostGoldCart = _Object.CostGoldCartType or Entities.U_GoldCart;
     Logic.InteractiveObjectSetCostGoldCartType(ID, CostGoldCart);
 
-    if GetNameOfKeyInTable(Entities, _Object.Replacement) then
-        Logic.InteractiveObjectSetReplacingEntityType(ID, _Object.Replacement);
-    end
+    -- This is removed as this change does not preserve the Scriptname of the entity
+    -- if GetNameOfKeyInTable(Entities, _Object.Replacement) then
+    --     Logic.InteractiveObjectSetReplacingEntityType(ID, _Object.Replacement);
+    -- end
     if _Object.Reward then
         Logic.InteractiveObjectAddRewards(ID, _Object.Reward[1], _Object.Reward[2]);
     end
