@@ -1,7 +1,7 @@
 
 # Changelog
 
-## Version 3.0.0.beta-1.1.13
+## Version 3.0.0.beta-1.2
 
 - *fix* Fehler bei dem manche Konsolenbefehle nie aufgerufen werden konnten wegen eines falschen Vergleichs
 - *fix* Falscher Index in Behavior Konstruktor
