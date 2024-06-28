@@ -21,6 +21,7 @@ function Swift.Bugfix:Initalize()
         self:FixInteractiveObjectClicked();
         self:FixCathedralName();
         self:FixHouseMenuIconsAndCounting();
+	self:SpeechFeedbackButtonForThieves()
     end
 end
 
@@ -411,5 +412,28 @@ function Swift.Bugfix:FixHouseMenuIconsAndCounting()
 		end
 		return nil
 	end
+end
+
+function Swift.Bugfix:SpeechFeedbackButtonForThieves()
+    GameCallback_Feedback_ThiefDeliverInformations = function(_ThiefPlayerID, _InformationID, _InformationPlayerID, _ThiefID, _ThiefEntityType, _PosX, _PosY)
+        --> nicht BuildingID sondern EntityType wird hier aus dem globalen Skript übergeben!
+        if _ThiefPlayerID == GUI.GetPlayerID() then
+            local Speech
+            if _InformationID == 1 then
+                Speech = "Minimap_ThiefDeliveredInformationCastle"
+            elseif _InformationID == 2 then
+                Speech = "Minimap_ThiefDeliveredInformationCathedral"
+            elseif _InformationID == 3 then
+                Speech = "Minimap_ThiefDeliveredInformationStorehouse"
+            end
+            local EntityInfos = {
+                Type = _ThiefEntityType,
+                PosX = _PosX,
+                PosY = _PosY,
+                ID = _ThiefID,
+            }
+            GUI_FeedbackSpeech.Add(Speech, g_FeedbackSpeech.Categories.OwnThiefDeliveredInformation, EntityInfos, nil)
+        end
+    end
 end
 --#EOF
