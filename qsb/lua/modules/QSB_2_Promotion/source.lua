@@ -85,22 +85,15 @@ end
 -- @param[type=number] _PlayerID Zielpartei
 -- @param[type=number] _KnightTitle Titel zum Entsperren
 -- @within Internal
--- @local
+-- @global
 --
 function ModuleKnightTitleRequirements.Global:UnlockTitleForPlayer(_PlayerID, _KnightTitle)
-    if LockedKnightTitles[_PlayerID] == _KnightTitle
-    then
-        LockedKnightTitles[_PlayerID] = nil;
-        for KnightTitle= _KnightTitle, #NeedsAndRightsByKnightTitle
-        do
+    if LockedKnightTitles[_PlayerID] == _KnightTitle then
+        LockedKnightTitles[_PlayerID] = nil
+        for KnightTitle = _KnightTitle, #NeedsAndRightsByKnightTitle do
             local TechnologyTable = NeedsAndRightsByKnightTitle[KnightTitle][4];
-            if TechnologyTable ~= nil
-            then
-                for i=1, #TechnologyTable
-                do
-                    local TechnologyType = TechnologyTable[i];
-                    Logic.TechnologySetState(_PlayerID, TechnologyType, TechnologyStates.Unlocked);
-                end
+            if type(TechnologyTable) == "table" then
+                UnLockFeaturesForPlayer(_PlayerID, TechnologyTable)
             end
         end
     end

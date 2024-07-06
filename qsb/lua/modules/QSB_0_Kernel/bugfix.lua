@@ -152,9 +152,10 @@ function Swift.Bugfix:FixInteractiveObjectClicked()
         or not GUI_Interaction.InteractionClickOverride(ObjectID) then
             Sound.FXPlay2DSound( "ui\\menu_click");
         end
-        -- Check feedback speech override
-        if not GUI_Interaction.InteractionSpeechFeedbackOverride
-        or not GUI_Interaction.InteractionSpeechFeedbackOverride(ObjectID) then
+        -- Check feedback speech override and Rewards. No Rewards --> no cart --> no speech!
+        local rew = Logic.InteractiveObjectGetRewards(ObjectID)
+        if rew and (not GUI_Interaction.InteractionSpeechFeedbackOverride
+        or not GUI_Interaction.InteractionSpeechFeedbackOverride(ObjectID)) then
             GUI_FeedbackSpeech.Add("SpeechOnly_CartsSent", g_FeedbackSpeech.Categories.CartsUnderway, nil, nil);
         end
         -- Check action override and perform action
