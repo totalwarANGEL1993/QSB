@@ -1,6 +1,16 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1
+
+- *fix* Thiefs cant steal from city storehouse
+- *fix* Tooltip Ritterbutton während respawn
+- *fix* Sprachmeldung beim IO, wenn es auch Rewards gibt, die zu einem fahren.
+- *fix* Unlock title for Player war noch fehlerhaft und wurde behoben.
+
+  *Entschuldigung für fehlende Changelogs zwischen den Versionen*
+
+
 ## Version 3.0.0.beta-1.2
 
 - *fix* Fehler bei dem manche Konsolenbefehle nie aufgerufen werden konnten wegen eines falschen Vergleichs
