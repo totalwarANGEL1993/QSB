@@ -761,15 +761,21 @@ function ModuleSelection.Local:OverwriteNamesAndDescription()
         local MotherWidget = "/InGame/Root/Normal/AlignBottomRight";
         local CurrentWidgetID = XGUIEng.GetCurrentWidgetID();
 
+        _OptionalDisabledTextKeyName = _OptionalDisabledTextKeyName or _OptionalTextKeyName or XGUIEng.GetWidgetNameByID(CurrentWidgetID)
+        if _OptionalDisabledTextKeyName == "JumpToEntityQuestTargets" or _OptionalDisabledTextKeyName == "BuyBatteringRamCart" or _OptionalDisabledTextKeyName == "UpgradeTurret" then
+            _OptionalDisabledTextKeyName = "UpgradeOutpost"
+        end
+        local DisabledText = "UI_ButtonDisabled/" .. _OptionalDisabledTextKeyName
+
         if XGUIEng.GetWidgetID(MotherWidget.. "/MapFrame/KnightButton") == CurrentWidgetID then
             local Text = API.Localize(ModuleSelection.Shared.Text.Tooltips.KnightButton);
-            API.SetTooltipNormal(Text.Title, Text.Text);
+            API.SetTooltipNormal(Text.Title, Text.Text, DisabledText);
             return;
         end
 
         if XGUIEng.GetWidgetID(MotherWidget.. "/MapFrame/BattalionButton") == CurrentWidgetID then
             local Text = API.Localize(ModuleSelection.Shared.Text.Tooltips.BattalionButton);
-            API.SetTooltipNormal(Text.Title, Text.Text);
+            API.SetTooltipNormal(Text.Title, Text.Text, DisabledText);
             return;
         end
 

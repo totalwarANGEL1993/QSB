@@ -265,7 +265,6 @@ function ModuleGuiControl.Local:TooltipNormal(_title, _text, _disabledText)
     if _text and _text:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
         _text = XGUIEng.GetStringTableText(_text);
     end
-    _disabledText = _disabledText or "";
     if _disabledText and _disabledText:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
         _disabledText = XGUIEng.GetStringTableText(_disabledText);
     end

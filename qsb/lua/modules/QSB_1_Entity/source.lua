@@ -240,7 +240,7 @@ function ModuleEntity.Global:TriggerThiefStealFromBuildingEvent(_ThiefID, _Thief
     local HeadquartersID = Logic.GetHeadquarters(_BuildingPlayerID);
     local CathedralID = Logic.GetCathedral(_BuildingPlayerID);
     local StorehouseID = Logic.GetStoreHouse(_BuildingPlayerID);
-    local IsVillageStorehouse = Logic.IsEntityInCategory(StorehouseID, EntityCategories.VillageStorehouse) == 0;
+    local IsVillageStorehouse = Logic.IsEntityInCategory(StorehouseID, EntityCategories.VillageStorehouse) == 1;
     local BuildingType = Logic.GetEntityType(_BuildingID);
 
     -- Aus Lagerhaus stehlen
