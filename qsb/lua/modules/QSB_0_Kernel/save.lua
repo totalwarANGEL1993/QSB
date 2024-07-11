@@ -115,12 +115,14 @@ end
 -- @param[type=boolean] _Flag Auto-Speichern ist deaktiviert
 -- @within Spielstand
 --
+-- true: Deaktivieren<br>
+-- false: Aktivieren
 function API.DisableAutoSave(_Flag)
     if Swift.Environment == QSB.Environment.GLOBAL then
-        Swift.Save.HistoryEditionQuickSave = _Flag == true;
+        Swift.Save.HistoryEditionQuickSave = not (_Flag == true);
         Logic.ExecuteInLuaLocalState(string.format(
             [[Swift.Save.HistoryEditionQuickSave = %s]],
-            tostring(_Flag == true)
+            tostring(not (_Flag == true))
         ))
     end
 end
