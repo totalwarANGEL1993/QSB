@@ -286,6 +286,8 @@ end
 -- @param[type=boolean] _Flag HE Quicksave deaktivieren
 -- @within QSB-Kern
 --
+-- true: Deaktivieren<br>
+-- false: Aktivieren
 function API.DisableAutomaticQuickSave(_Flag)
     API.DisableAutoSave(_Flag)
 end
