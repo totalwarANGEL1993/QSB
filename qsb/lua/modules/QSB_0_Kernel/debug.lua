@@ -120,7 +120,7 @@ function Swift.Debug:InitalizeQsbDebugHotkeys()
 end
 
 function Swift.Debug:ProcessDebugShortcut(_Type, _Params)
-    if self.DevelopingCheats then
+    if self.DevelopingShell then
         if _Type == "RestartMap" then
             Framework.RestartMap();
         elseif _Type == "Terminal" then
