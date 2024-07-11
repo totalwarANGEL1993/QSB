@@ -75,7 +75,7 @@ end
 --
 -- @usage
 -- -- Zentriert die Kamera über dem Entity mit dem Skriptnamen "HansWurst".
--- API.FocusCameraOnKnight("HansWurst", -45, 0.2);
+-- API.FocusCameraOnEntity("HansWurst", -45, 0.2);
 --
 function API.FocusCameraOnEntity(_Entity, _Rotation, _ZoomFactor)
     if not GUI then
