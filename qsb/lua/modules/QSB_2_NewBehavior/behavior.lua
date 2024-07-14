@@ -2185,14 +2185,11 @@ function B_Reward_ToggleCommunityFeatures:CustomFunction(_Quest)
 	
 	Logic.ExecuteInLuaLocalState([[
 		local ShowClockWidget = 1
-		if Swift.Debug.CheckAtRun.GameClock ~= nil then
-			Swift.Debug.CheckAtRun.GameClock = (]]..tostring(self.UseGameClock)..[[ == true)
-		
-			if not Swift.Debug.CheckAtRun.GameClock then
-				ShowClockWidget = 0
-			end
-			XGUIEng.ShowWidget("/InGame/Root/Normal/AlignTopLeft/GameClock", ShowClockWidget)
+		Swift.Debug.GameClock = (]]..tostring(self.UseGameClock)..[[ == true)
+		if not Swift.Debug.GameClock then
+			ShowClockWidget = 0
 		end
+		XGUIEng.ShowWidget("/InGame/Root/Normal/AlignTopLeft/GameClock", ShowClockWidget)
 	]]);
 end
 
