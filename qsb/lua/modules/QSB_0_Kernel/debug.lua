@@ -24,7 +24,7 @@ function Swift.Debug:Initalize()
 
     if Swift.Environment == QSB.Environment.LOCAL then
         self:InitalizeDebugWidgets();
-		self:InitalizeQsbDebugHotkeys();
+	self:InitalizeQsbDebugHotkeys();
 
         API.AddScriptEventListener(
             QSB.ScriptEvents.ChatClosed,
@@ -91,12 +91,14 @@ function Swift.Debug:InitalizeDebugWidgets()
         KeyBindings_EnableDebugMode(1);
         KeyBindings_EnableDebugMode(2);
         KeyBindings_EnableDebugMode(3);
-        XGUIEng.ShowWidget("/InGame/Root/Normal/AlignTopLeft/GameClock", 1);
         self.GameClock = true;
     else
         KeyBindings_EnableDebugMode(0);
+    end
+    if self.GameClock then
+        XGUIEng.ShowWidget("/InGame/Root/Normal/AlignTopLeft/GameClock", 1);
+    else
         XGUIEng.ShowWidget("/InGame/Root/Normal/AlignTopLeft/GameClock", 0);
-        self.GameClock = false;
     end
 end
 
