@@ -23,7 +23,8 @@ function Swift.Debug:Initalize()
     QSB.ScriptEvents.DebugConfigChanged = Swift.Event:CreateScriptEvent("Event_DebugConfigChanged");
 
     if Swift.Environment == QSB.Environment.LOCAL then
-        self:InitalizeQsbDebugHotkeys();
+        self:InitalizeDebugWidgets();
+		self:InitalizeQsbDebugHotkeys();
 
         API.AddScriptEventListener(
             QSB.ScriptEvents.ChatClosed,
