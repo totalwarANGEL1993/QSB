@@ -115,8 +115,10 @@ end
 -- @param[type=boolean] _Flag Auto-Speichern ist deaktiviert
 -- @within Spielstand
 --
--- true: Deaktivieren<br>
--- false: Aktivieren
+-- @usage
+-- HE-Quicksave deaktivieren: API.DisableAutomaticQuickSave(true)<br>
+-- HE-Quicksave aktivieren: API.DisableAutomaticQuickSave(false)
+--
 function API.DisableAutoSave(_Flag)
     if Swift.Environment == QSB.Environment.GLOBAL then
         Swift.Save.HistoryEditionQuickSave = not (_Flag == true);
