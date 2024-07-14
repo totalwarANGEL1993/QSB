@@ -268,7 +268,9 @@ function ModuleGuiControl.Local:TooltipNormal(_title, _text, _disabledText)
     if _disabledText and _disabledText:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
         _disabledText = XGUIEng.GetStringTableText(_disabledText);
     end
-    _disabledText = _disabledText or "";
+    if _disabledText == "nil" or _disabledText == "" then
+        _disabledText = nil
+    end
 
     local TooltipContainerPath = "/InGame/Root/Normal/TooltipNormal";
     local TooltipContainer = XGUIEng.GetWidgetID(TooltipContainerPath);
@@ -314,7 +316,9 @@ function ModuleGuiControl.Local:TooltipCosts(_title,_text,_disabledText,_costs,_
     if _disabledText and _disabledText:find("^[A-Za-z0-9_]+/[A-Za-z0-9_]+$") then
         _disabledText = XGUIEng.GetStringTableText(_disabledText);
     end
-    _disabledText = _disabledText or "";
+    if _disabledText == "nil" or _disabledText == "" then
+        _disabledText = nil
+    end
 
     local TooltipContainerPath = "/InGame/Root/Normal/TooltipBuy";
     local TooltipContainer = XGUIEng.GetWidgetID(TooltipContainerPath);
