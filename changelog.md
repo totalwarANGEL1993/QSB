@@ -1,6 +1,14 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.1
+
+- *fix* Konsole öffnet sich nicht erwartungsgemäß
+- *fix* Unlogische Parameterwerte bei API.DisableAutomaticQuickSave
+- *fix* Disabled Tooltips zeigen "nil" nicht mehr an
+- *fix* Reward_ToggleCommunityFeatures, GameClock (nach SaveGames). Debugwidgets (zu Spielstart): arbeiten nun korrekt zusammen
+
+
 ## Version 3.0.0beta-2.1
 
 - *fix* Thiefs cant steal from city storehouse
