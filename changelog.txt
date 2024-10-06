@@ -2,11 +2,4 @@
 
 # Changelog:
 
-- *fix* Fehler bei dem manche Konsolenbefehle nie aufgerufen werden konnten wegen eines falschen Vergleichs
-- *fix* Falscher Index in Behavior Konstruktor
-- *fix* Violette Farbe wird nun dem Nutzerinput im Questjournal korrekt zugewiesen
-- *fix* Falscher Index in allen :ProcessChatInput Methoden
-- *fix* Falscher Zeichenbereich in den Regular-Expressions
-- *added* Quests nutzen jetzt das gleiche Format für string tables
-- *fix* Fehler beim Ersetzen-Parameter der Interaktiven Objekte
-- *added* Hinweise zu Probleme bei der Nutzung mancher Funktionen wurden erweitert
+- *fix* Fehlende Abfrage auf eine valide Quest in GetTextOverride, Berichtung eines Fehlers im Pull Request #9
