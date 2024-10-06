@@ -804,6 +804,9 @@ function ModuleQuest.Local:OverwriteQuestTexts()
     end
 
     GetTextOverride = function(_Quest)
+        if _Quest == nil then
+            return;
+        end
         assert(type(_Quest) == "table");
 
         local Result;
