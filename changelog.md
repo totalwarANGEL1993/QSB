@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.2
+
+- *fix* Fehlende Abfrage auf eine valide Quest in GetTextOverride, Berichtung eines Fehlers im Commit https://github.com/Siedelwood/QSB/pull/9
+
 ## Version 3.0.0beta-2.1.1
 
 - *fix* Konsole öffnet sich nicht erwartungsgemäß
