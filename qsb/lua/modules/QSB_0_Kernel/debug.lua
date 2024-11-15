@@ -329,10 +329,15 @@ end
 -- @param[type=boolean] _TraceQuests      Quest Trace an/aus
 -- @param[type=boolean] _DevelopingCheats Cheats an/aus
 -- @param[type=boolean] _DevelopingShell  Eingabeaufforderung an/aus
+-- @param[type=numbern] _LogLevel         Loggt informationen aus dem Script je größer die Zahl desto mehr unbedeutende Infos werden geloggt
 -- @within System
 --
-function API.ActivateDebugMode(_CheckAtRun, _TraceQuests, _DevelopingCheats, _DevelopingShell)
+function API.ActivateDebugMode(_CheckAtRun, _TraceQuests, _DevelopingCheats, _DevelopingShell, _LogLevel)
     Swift.Debug:ActivateDebugMode(_CheckAtRun, _TraceQuests, _DevelopingCheats, _DevelopingShell);
+    if _LogLevel == nil then
+        _LogLevel = 4
+    end
+    API.SetLogLevel(_LogLevel, _LogLevel)
 end
 
 -- Aktiviert DisplayScriptErrors, auch wenn der Benutzer das Spiel nicht
