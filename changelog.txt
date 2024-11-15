@@ -2,4 +2,5 @@
 
 # Changelog:
 
-- *fix* Fehlende Abfrage auf eine valide Quest in GetTextOverride, Berichtung eines Fehlers im Pull Request #9
+- *fix* Fehler Ausgabe der Konsoleninfos
+- *fix* Fehler in den Single Reserve Button

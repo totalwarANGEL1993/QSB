@@ -1,6 +1,11 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.3
+
+- *fix* Fehler Ausgabe der Konsoleninfos
+- *fix* Fehler in den Single Reserve Button
+
 ## Version 3.0.0beta-2.1.2
 
 - *fix* Fehlende Abfrage auf eine valide Quest in GetTextOverride, Berichtung eines Fehlers im Commit https://github.com/Siedelwood/QSB/pull/9

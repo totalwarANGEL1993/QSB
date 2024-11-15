@@ -756,25 +756,25 @@ function ModuleBuildingButtons.Local:AddSingleReserveButton()
         end,
         function(WidgetID, _BuildingID)
             local Title = {
-                de = "",
-                en = "",
-                fr = "",
+                de = "Produzierte Güter reservieren",
+                en = "Reserve produced goods",
+                fr = "Réserver les biens produits",
             }
             local Text = {
-                de = "",
-                en = "",
-                fr = "",
+                de = "- Siedler fürfen keine Güter dieses Gebäudes konsumieren.{cr}- Güter sind für Verkauf oder Aufträge reserviert.",
+                en = "- Settlers may not consume goods from this building.{cr}- Goods are reserved for sale or orders.",
+                fr = "- Les Settlers ne peuvent pas consommer les biens de ce bâtiment {cr}- Les biens sont réservés à la vente ou aux commandes.",
             }
             if Logic.IsBuildingStopped(_BuildingID) then -- Change to reserviert
                 Title = {
-                    de = "",
-                    en = "",
-                    fr = "",
+                    de = "Produzierte Güter freigeben",
+                    en = "Release produced goods",
+                    fr = "Partager les biens produits",
                 }
                 Text = {
-                    de = "",
-                    en = "",
-                    fr = "",
+                    de = "- Siedler fürfen Güter dieses Gebäudes konsumieren.",
+                    en = "- Settlers may consume goods from this building.",
+                    fr = "- Les Settlers peuvent consommer les biens de ce bâtiment.",
                 }
             end
             API.SetTooltipCosts(Title, Text)
@@ -794,9 +794,9 @@ function ModuleBuildingButtons.Local:AddSingleReserveButton()
             else
                 XGUIEng.DisableButton(_WidgetID, 0)
             end
-            SetIcon(_WidgetID, {15, 6})
+            SetIcon(_WidgetID, {10, 9})
             if Logic.IsBuildingStopped(_BuildingID) then -- Change to reserviert
-                SetIcon(_WidgetID, {10, 9})
+                SetIcon(_WidgetID, {15, 6})
             end
         end
     )
