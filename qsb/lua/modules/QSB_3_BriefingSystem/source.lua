@@ -166,24 +166,15 @@ function ModuleBriefingSystem.Global:CreateBriefingAddPage(_Briefing)
         if _Page.Position then
             -- Fill angle
             if not _Page.Angle then
-                _Page.Angle = QSB.Briefing.CAMERA_ANGLEDEFAULT;
-                if _Page.DialogCamera then
-                    _Page.Angle = QSB.Briefing.DLGCAMERA_ANGLEDEFAULT;
-                end
+                _Page.Angle = (_Page.DialogCamera and QSB.Briefing.DLGCAMERA_ANGLEDEFAULT) or QSB.Briefing.CAMERA_ANGLEDEFAULT;
             end
             -- Fill rotation
             if not _Page.Rotation then
-                _Page.Rotation = QSB.Briefing.CAMERA_ROTATIONDEFAULT;
-                if _Page.DialogCamera then
-                    _Page.Rotation = QSB.Briefing.DLGCAMERA_ROTATIONDEFAULT;
-                end
+                _Page.Rotation = (_Page.DialogCamera and QSB.Briefing.CAMERA_ROTATIONDEFAULT) or QSB.Briefing.DLGCAMERA_ROTATIONDEFAULT;
             end
             -- Fill zoom
             if not _Page.Zoom then
-                _Page.Zoom = QSB.Briefing.CAMERA_ZOOMDEFAULT;
-                if _Page.DialogCamera then
-                    _Page.Zoom = QSB.Briefing.DLGCAMERA_ZOOMDEFAULT;
-                end
+                _Page.Zoom = (_Page.DialogCamera and QSB.Briefing.DLGCAMERA_ZOOMDEFAULT) or QSB.Briefing.CAMERA_ZOOMDEFAULT;
             end
             -- Optional fly to
             local Position2, Rotation2, Zoom2, Angle2;
@@ -204,11 +195,7 @@ function ModuleBriefingSystem.Global:CreateBriefingAddPage(_Briefing)
 
         -- Field of View
         if not _Page.FOV then
-            if _Page.DialogCamera then
-                _Page.FOV = QSB.Briefing.DLGCAMERA_FOVDEFAULT;
-            else
-                _Page.FOV = QSB.Briefing.CAMERA_FOVDEFAULT;
-            end
+            _Page.FOV = (_Page.DialogCamera and QSB.Briefing.DLGCAMERA_FOVDEFAULT) or QSB.Briefing.CAMERA_FOVDEFAULT;
         end
 
         -- Display time
@@ -221,7 +208,7 @@ function ModuleBriefingSystem.Global:CreateBriefingAddPage(_Briefing)
                     _Page.DisableSkipping = false;
                 end
                 _Page.Duration = _Page.Text:len() * QSB.Briefing.TIMER_PER_CHAR;
-                _Page.Duration = (_Page.Duration < 6 and 6) or _Page.Duration < 6;
+                _Page.Duration = (_Page.Duration < 6 and 6) or _Page.Duration;
             end
         end
 
