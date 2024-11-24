@@ -393,19 +393,6 @@ function API.AddBriefingPages(_Briefing)
             end
         end
 
-        -- Wenn nicht gesetzt, dann automatisch true.
-        local BigBars;
-        -- Wenn nicht gesetzt, wird automatisch auf 43 gesetzt.
-        -- Falls DialogCamera true ist, dann automatisch auf 27 gesetzt.
-        local Angle;
-        -- Falls nicht gesetzt, wird automatisch auf 6500 gesetzt.
-        -- Falls DIalogCmera true ist, dann autmoatisch auf 1750 gesetzt.
-        local Zoom;
-        -- Falls nicht gesetzt, wird ... Fehlender Text noch.
-        local FOV;
-
-        local Duration;
-
         -- Create page
         return _Briefing:AddPage {
             Name            = Name,
@@ -416,11 +403,6 @@ function API.AddBriefingPages(_Briefing)
             DisableSkipping = NoSkipping,
             DialogCamera    = DialogCam,
             Rotation        = Rotation,
-            BigBars         = BigBars,
-            Angle           = Angle,
-            Zoom            = Zoom,
-            FOV             = FOV,
-            Duration        = Duration,
         };
     end
 
