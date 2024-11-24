@@ -53,9 +53,10 @@ function API.TravelingSalesmanCreate(_TraderDescription)
     if GUI then
         return;
     end
+    ModuleShipSalesment.Global.Conmpatibility = true
     _TraderDescription.Name = "TravelingSalesman" .. _TraderDescription.PlayerID
     _TraderDescription.Interval = _TraderDescription.Interval * 60
     _TraderDescription.Amount = _TraderDescription.OfferCount
-    API.InitHarbor (_TraderDescription.PlayerID, _TraderDescription)
+    API.InitHarbor(_TraderDescription.PlayerID, _TraderDescription)
 end
 TravelingSalesmanCreate = API.TravelingSalesmanCreate;

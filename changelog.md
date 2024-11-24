@@ -4,8 +4,10 @@
 ## Version 3.0.0beta-2.1.4
 
 - *change* loglevel der BCS Ausgabe wurde angepasst
+- *change* Wird ein Händler über die Kompatibilität aufgerufen werden die Angebote beim Ausfahren zurückgesetzt.
 
 - *fix* Formaler Fehler in FlyTo gefixt
+- *fix* Bei AP konnte die Duration zu einem Boolean werden
 
 ## Version 3.0.0beta-2.1.3
 
