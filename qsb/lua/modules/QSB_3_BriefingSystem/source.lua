@@ -188,15 +188,15 @@ function ModuleBriefingSystem.Global:CreateBriefingAddPage(_Briefing)
             -- Optional fly to
             local Position2, Rotation2, Zoom2, Angle2;
             if _Page.FlyTo then
-                Position2 = _Page.FlyTo.Position or Position2;
-                Rotation2 = _Page.FlyTo.Rotation or Rotation2;
-                Zoom2     = _Page.FlyTo.Zoom or Zoom2;
-                Angle2    = _Page.FlyTo.Angle or Angle2;
+                Position2 = _Page.FlyTo.Position or _Page.Position;
+                Rotation2 = _Page.FlyTo.Rotation or _Page.Rotation;
+                Zoom2     = _Page.FlyTo.Zoom or _Page.Zoom;
+                Angle2    = _Page.FlyTo.Angle or _Page.Angle;
             end
             -- Create the animation
             _Briefing.PageAnimations[Identifier] = {
                 Clear = true,
-                {_Page.Duration or 1,
+                {math.abs(_Page.Duration) or 1,
                  _Page.Position, _Page.Rotation, _Page.Zoom, _Page.Angle,
                  Position2, Rotation2, Zoom2, Angle2}
             };

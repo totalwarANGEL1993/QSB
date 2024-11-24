@@ -1,6 +1,12 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.4
+
+- *change* loglevel der BCS Ausgabe wurde angepasst
+
+- *fix* Formaler Fehler in FlyTo gefixt
+
 ## Version 3.0.0beta-2.1.3
 
 - *fix* Fehler Ausgabe der Konsoleninfos
@@ -17,7 +23,6 @@
 - *fix* Disabled Tooltips zeigen "nil" nicht mehr an
 - *fix* Reward_ToggleCommunityFeatures, GameClock (nach SaveGames). Debugwidgets (zu Spielstart): arbeiten nun korrekt zusammen
 
-
 ## Version 3.0.0beta-2.1
 
 - *fix* Thiefs cant steal from city storehouse
@@ -26,7 +31,6 @@
 - *fix* Unlock title for Player war noch fehlerhaft und wurde behoben.
 
   *Entschuldigung für fehlende Changelogs zwischen den Versionen*
-
 
 ## Version 3.0.0.beta-1.2
 
@@ -134,7 +138,6 @@
 - *fix* Reward_EditBuildingConstructionCosts wurde nicht gefunden
 - *fix* Fehlende Data-Tabelle bei Gebäudebuttons hinzugefügt
 - *fix* Fehlende Implementierung von API.SetSpeedLimit(_Limit) hinzugefügt
-
 
 - *added* Addon für Questketten hinzugefügt
 - *added* Kompatibilität zu Funktionen zum verstecken von Interfaceelementen

@@ -2,5 +2,6 @@
 
 # Changelog:
 
-- *fix* Fehler Ausgabe der Konsoleninfos
-- *fix* Fehler in den Single Reserve Button
+- *change* loglevel der BCS Ausgabe wurde angepasst
+- *fix* Formaler Fehler in FlyTo gefixt
+
