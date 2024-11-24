@@ -535,7 +535,7 @@ function ModuleBuildingCost.Local:AddBuildingToIDTable(_EntityID)
 	if FGood ~= nil and FGood ~= 0 then
 		table.insert(self.Data.BuildingIDTable, {_EntityID, FGood, FAmount, SGood, SAmount})
 	else
-		info("BCS: AddBuildingToIDTable() -> FGood was nil/0! Nothing was added!")
+		debug("BCS: AddBuildingToIDTable() -> FGood was nil/0! Nothing was added!")
 	end
 end
 
@@ -770,7 +770,7 @@ function ModuleBuildingCost.Local:RefundKnockDown(_entityID)
 
 	self.Data.BuildingIDTable[Type] = nil -- Delete the Entity ID from the table
 
-	info("BCS: KnockDown for Building "..tostring(_entityID).." done! Size of KnockDownList: "..tostring(#self.Data.BuildingIDTable))
+	debug("BCS: KnockDown for Building "..tostring(_entityID).." done! Size of KnockDownList: "..tostring(#self.Data.BuildingIDTable))
 end
 
 function ModuleBuildingCost.Local:RefundKnockDownForCityGoods(_goodType, _goodAmount)
@@ -803,7 +803,7 @@ function ModuleBuildingCost.Local:RefundKnockDownForCityGoods(_goodType, _goodAm
 		end
     end
 
-	info("BCS: Refunded City Goods with type ".._goodType.." and amount ".._goodAmount..". Amount Lost: "..AmountToRemove)
+	debug("BCS: Refunded City Goods with type ".._goodType.." and amount ".._goodAmount..". Amount Lost: "..AmountToRemove)
 end
 
 function ModuleBuildingCost.Local:GetEntityIDToAddToOutStock(_goodType)
@@ -826,36 +826,36 @@ function ModuleBuildingCost.Local:GetEntityIDToAddToOutStock(_goodType)
 end
 
 function ModuleBuildingCost.Local:GetLastPlacedBuildingIDForKnockDown(_EntityID)
-	info("BCS: Job "..tostring(_EntityID).." Created!")
+	debug("BCS: Job "..tostring(_EntityID).." Created!")
 	-- Are we even waiting on something?
 	if self.Data.CurrentExpectedBuildingType == nil then
-		info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: CurrentExpectedBuildingType was nil!")
+		debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: CurrentExpectedBuildingType was nil!")
 		return true;
 	end
 	if not IsExisting(_EntityID) then
-		info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Worker Entity was deleted!")
+		debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Worker Entity was deleted!")
 		return true;
 	elseif string.find(Logic.GetEntityTypeName(Logic.GetEntityType(_EntityID)), 'NPC') then
-		info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Worker was an NPC - Settler!")
+		debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Worker was an NPC - Settler!")
 		return true;
 	elseif Logic.GetTaskHistoryEntry(_EntityID, 0) ~= 1 and Logic.GetTaskHistoryEntry(_EntityID, 0) ~= 9 then
-		info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: TaskHistoryEntry was not 1 or 9 (Just Spawned/BuildingPhase)")
+		debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: TaskHistoryEntry was not 1 or 9 (Just Spawned/BuildingPhase)")
 		return true;
 	end
 	-- Here, we expect that a building was being placed recently
 	local WorkPlaceID = Logic.GetSettlersWorkBuilding(_EntityID)
 	if WorkPlaceID ~= 0 and WorkPlaceID ~= nil then
 		local Type = Logic.GetEntityType(WorkPlaceID)
-		info("BCS: Job "..tostring(_EntityID).." has BuildingType: " ..tostring(Type) .." - Expected: "..tostring(self.Data.CurrentExpectedBuildingType))	
+		debug("BCS: Job "..tostring(_EntityID).." has BuildingType: " ..tostring(Type) .." - Expected: "..tostring(self.Data.CurrentExpectedBuildingType))	
 		if Type == self.Data.CurrentExpectedBuildingType then
 
 			self:AddBuildingToIDTable(WorkPlaceID)
 			self.Data.CurrentExpectedBuildingType = nil
-			info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Building Added To ID Table: " ..tostring(WorkPlaceID))
+			debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: Building Added To ID Table: " ..tostring(WorkPlaceID))
 
 			return true;
 		else
-			info("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: CurrentExpectedBuildingType ~= WorkplaceID-Type!")
+			debug("BCS: Job " ..tostring(_EntityID) .. " finished! Reason: CurrentExpectedBuildingType ~= WorkplaceID-Type!")
 			return true;
 		end
 	end
@@ -867,10 +867,10 @@ function ModuleBuildingCost.Local:HasCurrentBuildingOwnBuildingCosts(_upgradeCat
 	local CostTable = self:GetCostByCostTable(_upgradeCategory)
 	if (CostTable == nil or CostTable == 0) then
 		self:SetAwaitingVariable(false)
-		info("BCS: Building NOT Custom with Category: "..tostring(_upgradeCategory))
+		debug("BCS: Building NOT Custom with Category: "..tostring(_upgradeCategory))
 	else
 		self:SetAwaitingVariable(true)
-		info("BCS: Building Custom with Category: "..tostring(_upgradeCategory))
+		debug("BCS: Building Custom with Category: "..tostring(_upgradeCategory))
 	end
 end
 function ModuleBuildingCost.Local:SetAwaitingVariable(_isAwaiting)
@@ -1235,7 +1235,7 @@ function ModuleBuildingCost.Local:SetCustomToolTipCosts(_TooltipCostsContainer, 
 		Good1Path = Goods2ContainerPath .. "/Good1Of2"
 		Good2Path = Goods2ContainerPath .. "/Good2Of2"
 	elseif NumberOfValidAmounts > 2 then
-		GUI.AddNote("Debug: Invalid Costs table. Not more than 2 GoodTypes allowed.")
+		info("BCS: Invalid Costs table. Not more than 2 GoodTypes allowed.")
 	end
 
 	local ContainerIndex = 1
@@ -1601,17 +1601,17 @@ function ModuleBuildingCost.Local:ResetTrailAndRoadCosts()
 
 	self.Data.StreetMultiplier.CurrentX = 1
 	self.Data.StreetMultiplier.CurrentY = 1
-	
+
 	self.Data.RoadMultiplier.First = 1
 	self.Data.RoadMultiplier.Second = 1
-	
+
 	self.Data.RoadMultiplier.CurrentActualCost = 1
 end
 
 function ModuleBuildingCost.Local:ResetWallTurretPositions()
 	StartTurretX = 1 
 	StartTurretY = 1
-	
+
 	EndTurretX = 1
 	EndTurretY = 1
 end
@@ -1670,7 +1670,7 @@ function ModuleBuildingCost.Local:FestivalCostsHandler()
 				StartKnightVoiceForPermanentSpecialAbility(Entities.U_KnightSong)
 				GUI.AddBuff(Buffs.Buff_Festival)
 				
-				info("BCS: Festival Started! Gold Amount: "..tostring(Amount))
+				debug("BCS: Festival Started! Gold Amount: "..tostring(Amount))
 			else
 				Message(XGUIEng.GetStringTableText("Feedback_TextLines/TextLine_NotEnough_Resources"))
 			end
