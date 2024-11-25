@@ -7,7 +7,6 @@ ModuleShipSalesment = {
     },
 
     Global = {
-        Conmpatibility = false,
         Data = {},
         Harbors = {},
     },
@@ -40,6 +39,16 @@ end
 function ModuleShipSalesment.Global:OnEvent(_ID, ...)
     if _ID == QSB.ScriptEvents.LoadscreenClosed then
         self.LoadscreenClosed = true;
+    else _ID == QSB.ScriptEvents.TradeShipLeft then
+        for _index = 1, #self.Harbors[k].Routes do
+            if self.Harbors[k].Routes[_index].OldHarbor == true then
+                StoreData = ModuleTrade.Global:GetStorehouseInformation(k)
+                for _NumberOfOffers = StoreData.OfferCount, 1 , -1 do
+                    local Offer = table.remove(self.Harbors[k].AddedOffers, 1);
+                    API.RemoveTradeOffer(k, Offer);
+                end
+            end
+        end
     end
 end
 
@@ -336,7 +345,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                         if v.Routes[i].Timer >= v.Routes[i].Duration then
                             self.Harbors[k].Routes[i].State = QSB.ShipTraderState.MovingOut;
                             self.Harbors[k].Routes[i].Timer = 0;
-                            ResetTradeGoodsOnLeave = self.Conmpatibility
                             self:SendShipLeftEvent(k, v.Routes[i], ShipID);
                             self:MoveShipOut(k, i);
                         end
@@ -349,16 +357,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                             self:DespawnShip(k, i);
                         end
                     end
-                end
-
-                -- reset offers
-                if self.Conmpatibility and ResetTradeGoodsOnLeave then
-                    self.Harbors[k].AddedOffers = {}
-                    local StoreData = ModuleTrade.Global:GetStorehouseInformation(k);
-                    for i= 1, #StoreData[1] do
-                        ModuleTrade.Global:RemoveTradeOfferByData(StoreData, i)
-                    end
-                    ResetTradeGoodsOnLeave = false
                 end
             end
         end
