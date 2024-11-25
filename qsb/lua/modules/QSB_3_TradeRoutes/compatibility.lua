@@ -31,8 +31,8 @@
 --     Interval   = 3,       -- Monate zwischen zwei Anfarten (Standard: 2)
 --     OfferCount = 4,       -- Anzahl Angebote (1 bis 4) (Standard: 4)
 --     NoIce      = true,    -- Schiff kommt nicht im Winter (Standard: false)
---     OldHarbor  = true     -- Optional, Angebote werden mit Verlassen des Schiffs wieder entfernt (Standard: false)
---     Name       = "Route1" -- Optional, Pro Hafen kann nur eine Route diesen Namen haben. Wird zum Entfernen und Verändern von Routen benutzt.
+--     OldHarbor  = true,     -- Optional, Angebote werden mit Verlassen des Schiffs wieder entfernt (Standard: false)
+--     Name       = "Route1", -- Optional, Pro Hafen kann nur eine Route diesen Namen haben. Wird zum Entfernen und Verändern von Routen benutzt.
 --     Offers = {
 --         -- Angebot, Menge
 --         {"G_Gems", 5},

@@ -39,7 +39,7 @@ end
 function ModuleShipSalesment.Global:OnEvent(_ID, ...)
     if _ID == QSB.ScriptEvents.LoadscreenClosed then
         self.LoadscreenClosed = true;
-    else _ID == QSB.ScriptEvents.TradeShipLeft then
+    elseif  _ID == QSB.ScriptEvents.TradeShipLeft then
         for _index = 1, #self.Harbors[k].Routes do
             if self.Harbors[k].Routes[_index].OldHarbor == true then
                 StoreData = ModuleTrade.Global:GetStorehouseInformation(k)
