@@ -40,12 +40,12 @@ function ModuleShipSalesment.Global:OnEvent(_ID, ...)
     if _ID == QSB.ScriptEvents.LoadscreenClosed then
         self.LoadscreenClosed = true;
     elseif  _ID == QSB.ScriptEvents.TradeShipLeft then
-        for _index = 1, #self.Harbors[args[1]].Routes do
-            if self.Harbors[args[1]].Routes[_index].OldHarbor == true then
-                StoreData = ModuleTrade.Global:GetStorehouseInformation(args[1])
+        for _index = 1, #self.Harbors[arg[1]].Routes do
+            if self.Harbors[arg[1]].Routes[_index].OldHarbor == true then
+                StoreData = ModuleTrade.Global:GetStorehouseInformation(arg[1])
                 for _NumberOfOffers = StoreData.OfferCount, 1 , -1 do
-                    local Offer = table.remove(self.Harbors[args[1]].AddedOffers, 1);
-                    API.RemoveTradeOffer(args[1], Offer);
+                    local Offer = table.remove(self.Harbors[arg[1]].AddedOffers, 1);
+                    API.RemoveTradeOffer(arg[1], Offer);
                 end
             end
         end
