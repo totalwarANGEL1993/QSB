@@ -317,8 +317,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                     end
                 end
 
-                local ResetTradeGoodsOnLeave = false
-
                 -- control trade routes
                 for i= 1, #v.Routes do
                     if v.Routes[i].State == QSB.ShipTraderState.Waiting then
