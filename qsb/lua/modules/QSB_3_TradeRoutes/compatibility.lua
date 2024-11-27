@@ -61,3 +61,15 @@ function API.TravelingSalesmanCreate(_TraderDescription)
     API.InitHarbor(_TraderDescription.PlayerID, _TraderDescription)
 end
 TravelingSalesmanCreate = API.TravelingSalesmanCreate;
+
+-- Setzt ob der Händler des Hafens etwas sagen soll, nachdem er etwas gemacht hat bzw. passiert ist.
+--
+--<b>QSB:</b> API.InitHarbor(_PlayerID, ...)
+--@param[type=boolean] _flag true oder false. Standartwert ist true
+--@within QSB_3_TradeRoutes
+--
+--@usage API.TravelingSalesmanShouting(true)
+--@usage API.TravelingSalesmanShouting(false)
+function API.TravelingSalesmanShouting(_flag)
+    ModuleShipSalesment.Global.LoudTrader = _flag;
+end

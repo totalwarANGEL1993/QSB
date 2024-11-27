@@ -9,6 +9,7 @@ ModuleShipSalesment = {
     Global = {
         Data = {},
         Harbors = {},
+        LoudTrader = true,
     },
     Local = {
         Data = {},
@@ -39,6 +40,14 @@ end
 function ModuleShipSalesment.Global:OnEvent(_ID, ...)
     if _ID == QSB.ScriptEvents.LoadscreenClosed then
         self.LoadscreenClosed = true;
+    elseif _ID == QSB.ScriptEvents.TradeShipSpawned then
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesmanSpotted')");
+        end
+    elseif _ID == QSB.ScriptEvents.TradeShipArrived then
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman')");
+        end
     elseif  _ID == QSB.ScriptEvents.TradeShipLeft then
         for _index = 1, #self.Harbors[arg[1]].Routes do
             if self.Harbors[arg[1]].Routes[_index].OldHarbor == true then
@@ -48,6 +57,13 @@ function ModuleShipSalesment.Global:OnEvent(_ID, ...)
                     API.RemoveTradeOffer(arg[1], Offer);
                 end
             end
+        end
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman_Failure')");
+        end
+    elseif _ID == QSB.ScriptEvents.TradeShipDespawned then
+        if ModuleShipSalesment.Global.LoudTrader then
+            
         end
     end
 end
