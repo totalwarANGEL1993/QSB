@@ -1,6 +1,14 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.5
+
+- *change* Für das Logging der Konsolenkommandos wurde ein neues, manuelles Logging erstellt.
+- *change* Für das Setzen des Loglevels kann nun in `API.ActivateDebugMode`ein fünfter Parameter bei Bedarf optional gesetzt werden, mit dem das LogLevel manuell gesetzt wird.
+- *changeback* Wird ein Händler über die Kompatibilität aufgerufen werden die Angebote beim Ausfahren zurückgesetzt.
+- *change* Wird eine Tradedescription (Handelsbeschreibung) beim Hafen mit dem Wert "true" für "OldHarbour" gesetzt, werden Angebote mit verlassen des Schiffes gelöscht.
+- *change* Die Möglichkeit mit API.TravelingSalesmanShouting(_flag) die Nachrichten des Händlers zu visualieren wurde hinzugefügt. Standardwert für das Erhalten der Nachrichten ist true.
+
 ## Version 3.0.0beta-2.1.4
 
 - *change* loglevel der BCS Ausgabe wurde angepasst
