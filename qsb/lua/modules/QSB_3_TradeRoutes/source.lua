@@ -7,9 +7,9 @@ ModuleShipSalesment = {
     },
 
     Global = {
-        Conmpatibility = false,
         Data = {},
         Harbors = {},
+        LoudTrader = true,
     },
     Local = {
         Data = {},
@@ -40,6 +40,31 @@ end
 function ModuleShipSalesment.Global:OnEvent(_ID, ...)
     if _ID == QSB.ScriptEvents.LoadscreenClosed then
         self.LoadscreenClosed = true;
+    elseif _ID == QSB.ScriptEvents.TradeShipSpawned then
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesmanSpotted')");
+        end
+    elseif _ID == QSB.ScriptEvents.TradeShipArrived then
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman')");
+        end
+    elseif  _ID == QSB.ScriptEvents.TradeShipLeft then
+        for _index = 1, #self.Harbors[arg[1]].Routes do
+            if self.Harbors[arg[1]].Routes[_index].OldHarbor == true then
+                StoreData = ModuleTrade.Global:GetStorehouseInformation(arg[1])
+                for _NumberOfOffers = StoreData.OfferCount, 1 , -1 do
+                    local Offer = table.remove(self.Harbors[arg[1]].AddedOffers, 1);
+                    API.RemoveTradeOffer(arg[1], Offer);
+                end
+            end
+        end
+        if ModuleShipSalesment.Global.LoudTrader then
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman_Failure')");
+        end
+    elseif _ID == QSB.ScriptEvents.TradeShipDespawned then
+        if ModuleShipSalesment.Global.LoudTrader then
+            
+        end
     end
 end
 
@@ -308,8 +333,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                     end
                 end
 
-                local ResetTradeGoodsOnLeave = false
-
                 -- control trade routes
                 for i= 1, #v.Routes do
                     if v.Routes[i].State == QSB.ShipTraderState.Waiting then
@@ -336,7 +359,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                         if v.Routes[i].Timer >= v.Routes[i].Duration then
                             self.Harbors[k].Routes[i].State = QSB.ShipTraderState.MovingOut;
                             self.Harbors[k].Routes[i].Timer = 0;
-                            ResetTradeGoodsOnLeave = self.Conmpatibility
                             self:SendShipLeftEvent(k, v.Routes[i], ShipID);
                             self:MoveShipOut(k, i);
                         end
@@ -349,16 +371,6 @@ function ModuleShipSalesment.Global:ControlHarbors()
                             self:DespawnShip(k, i);
                         end
                     end
-                end
-
-                -- reset offers
-                if self.Conmpatibility and ResetTradeGoodsOnLeave then
-                    self.Harbors[k].AddedOffers = {}
-                    local StoreData = ModuleTrade.Global:GetStorehouseInformation(k);
-                    for i= 1, #StoreData[1] do
-                        ModuleTrade.Global:RemoveTradeOfferByData(StoreData, i)
-                    end
-                    ResetTradeGoodsOnLeave = false
                 end
             end
         end

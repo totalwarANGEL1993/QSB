@@ -618,34 +618,34 @@ function ModuleQuest.Global:ProcessChatInput(_Text, _PlayerID, _IsDebug)
             end
             if Commands[i][1] == "fail" then
                 API.FailQuest(FoundQuests[1]);
-                info("fail quest '" ..FoundQuests[1].. "'");
+                manuelLogging("fail quest '" ..FoundQuests[1].. "'");
             elseif Commands[i][1] == "restart" then
                 API.RestartQuest(FoundQuests[1]);
-                info("restart quest '" ..FoundQuests[1].. "'");
+                manuelLogging("restart quest '" ..FoundQuests[1].. "'");
             elseif Commands[i][1] == "start" then
                 API.StartQuest(FoundQuests[1]);
-                info("trigger quest '" ..FoundQuests[1].. "'");
+                manuelLogging("trigger quest '" ..FoundQuests[1].. "'");
             elseif Commands[i][1] == "stop" then
                 API.StopQuest(FoundQuests[1]);
-                info("interrupt quest '" ..FoundQuests[1].. "'");
+                manuelLogging("interrupt quest '" ..FoundQuests[1].. "'");
             elseif Commands[i][1] == "win" then
                 API.WinQuest(FoundQuests[1]);
-                info("win quest '" ..FoundQuests[1].. "'");
+                manuelLogging("win quest '" ..FoundQuests[1].. "'");
             end
         end
 
         if Commands[i][1] == "stopped" then
-            info( self:FindQuestsByState(QuestState.Interrupted) )
+            manuelLogging( self:FindQuestsByState(QuestState.Interrupted) )
         elseif Commands[i][1] == "active" then
-            info( self:FindQuestsByState(QuestState.Active) )
+            manuelLogging( self:FindQuestsByState(QuestState.Active) )
         elseif Commands[i][1] == "won" then
-            info( self:FindQuestsByState(QuestState.Success) )
+            manuelLogging( self:FindQuestsByState(QuestState.Success) )
         elseif Commands[i][1] == "failed" then
-            info( self:FindQuestsByState(QuestState.Failure) )
+            manuelLogging( self:FindQuestsByState(QuestState.Failure) )
         elseif Commands[i][1] == "waiting" then
-            info( self:FindQuestsByState(QuestState.NotTriggered) )
+            manuelLogging( self:FindQuestsByState(QuestState.NotTriggered) )
         elseif Commands[i][1] == "find" then
-            info( self:FindQuestsByNamePart(Commands[i]) )
+            manuelLogging( self:FindQuestsByNamePart(Commands[i]) )
         end
     end
 end

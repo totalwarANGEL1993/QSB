@@ -13,6 +13,7 @@ Swift.Logging = {
 };
 
 QSB.LogLevel = {
+    ManuelLogging = 5;
     ALL     = 4;
     INFO    = 3;
     WARNING = 2;
@@ -80,6 +81,9 @@ function warn(_Text, _Silent)
 end
 function error(_Text, _Silent)
     Swift.Logging:Log("ERROR: " .._Text, QSB.LogLevel.ERROR, not _Silent);
+end
+function manuelLogging(_text, _Silent)
+    Swift.Logging:Log("Log: " .._Text, QSB.LogLevel.ManuelLogging, not _Silent);
 end
 
 -- -------------------------------------------------------------------------- --

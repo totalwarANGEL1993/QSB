@@ -87,7 +87,18 @@ jobs:
           echo " "
           echo Binaries Done
           echo ------------------------------------------------------------------
-      
+
+      - name: Cut Comments out
+        run: echo ------------------------------------------------------------------
+             echo Removing all Comments from QSB-output Files
+             echo " "
+             sed '/^--/d' qsb/lua/var/build/source/qsb.lua 
+             sed '/^--/d' qsb/lua/var/build/source/qsb_all.lua
+             sed '/^--/d' qsb/lua/var/build/source/qsb_comp.lua
+             echo Removing all Comments done
+             echo ------------------------------------------------------------------
+             
+
       - name: Setting ReleastTag
         run: echo "ReleaseTag=$(cat version.txt)" >> $GITHUB_ENV
           

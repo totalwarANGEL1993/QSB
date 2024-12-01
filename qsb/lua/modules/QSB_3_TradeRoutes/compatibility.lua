@@ -31,6 +31,8 @@
 --     Interval   = 3,       -- Monate zwischen zwei Anfarten (Standard: 2)
 --     OfferCount = 4,       -- Anzahl Angebote (1 bis 4) (Standard: 4)
 --     NoIce      = true,    -- Schiff kommt nicht im Winter (Standard: false)
+--     OldHarbor  = true,     -- Optional, Angebote werden mit Verlassen des Schiffs wieder entfernt (Standard: false)
+--     Name       = "Route1", -- Optional, Pro Hafen kann nur eine Route diesen Namen haben. Wird zum Entfernen und Verändern von Routen benutzt.
 --     Offers = {
 --         -- Angebot, Menge
 --         {"G_Gems", 5},
@@ -53,10 +55,21 @@ function API.TravelingSalesmanCreate(_TraderDescription)
     if GUI then
         return;
     end
-    ModuleShipSalesment.Global.Conmpatibility = true
     _TraderDescription.Name = "TravelingSalesman" .. _TraderDescription.PlayerID
     _TraderDescription.Interval = _TraderDescription.Interval * 60
     _TraderDescription.Amount = _TraderDescription.OfferCount
     API.InitHarbor(_TraderDescription.PlayerID, _TraderDescription)
 end
 TravelingSalesmanCreate = API.TravelingSalesmanCreate;
+
+-- Setzt ob der Händler des Hafens etwas sagen soll, nachdem er etwas gemacht hat bzw. passiert ist.
+--
+--<b>QSB:</b> API.InitHarbor(_PlayerID, ...)
+--@param[type=boolean] _flag true oder false. Standartwert ist true
+--@within QSB_3_TradeRoutes
+--
+--@usage API.TravelingSalesmanShouting(true)
+--@usage API.TravelingSalesmanShouting(false)
+function API.TravelingSalesmanShouting(_flag)
+    ModuleShipSalesment.Global.LoudTrader = _flag;
+end
