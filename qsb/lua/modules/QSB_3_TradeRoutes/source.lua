@@ -42,11 +42,11 @@ function ModuleShipSalesment.Global:OnEvent(_ID, ...)
         self.LoadscreenClosed = true;
     elseif _ID == QSB.ScriptEvents.TradeShipSpawned then
         if ModuleShipSalesment.Global.LoudTrader then
-            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesmanSpotted')");
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. arg[1] ..", 'TravelingSalesmanSpotted')");
         end
     elseif _ID == QSB.ScriptEvents.TradeShipArrived then
         if ModuleShipSalesment.Global.LoudTrader then
-            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman')");
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. arg[1] ..", 'TravelingSalesman')");
         end
     elseif  _ID == QSB.ScriptEvents.TradeShipLeft then
         for _index = 1, #self.Harbors[arg[1]].Routes do
@@ -59,7 +59,7 @@ function ModuleShipSalesment.Global:OnEvent(_ID, ...)
             end
         end
         if ModuleShipSalesment.Global.LoudTrader then
-            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. _PlayerID ..", 'TravelingSalesman_Failure')");
+            Logic.ExecuteInLuaLocalState("LocalScriptCallback_QueueVoiceMessage(".. arg[1] ..", 'TravelingSalesman_Failure')");
         end
     elseif _ID == QSB.ScriptEvents.TradeShipDespawned then
         if ModuleShipSalesment.Global.LoudTrader then
