@@ -8,6 +8,7 @@
 - *changeback* Wird ein Händler über die Kompatibilität aufgerufen werden die Angebote beim Ausfahren zurückgesetzt.
 - *change* Wird eine Tradedescription (Handelsbeschreibung) beim Hafen mit dem Wert "true" für "OldHarbour" gesetzt, werden Angebote mit verlassen des Schiffes gelöscht.
 - *change* Die Möglichkeit mit API.TravelingSalesmanShouting(_flag) die Nachrichten des Händlers zu visualieren wurde hinzugefügt. Standardwert für das Erhalten der Nachrichten ist true.
+- *fix* Requester Slider wird nun zurückgesetzt
 
 ## Version 3.0.0beta-2.1.4
 

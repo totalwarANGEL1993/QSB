@@ -342,7 +342,8 @@ function ModuleRequester.Local:ShowTextWindow(_Data)
         XGUIEng.ShowWidget("/InGame/Root/Normal/ChatOptions/Exit",0);
     end
     self:ShouldShowSlider(_Data.Content);
-    XGUIEng.ShowWidget("/InGame/Root/Normal/ChatOptions",1);
+    XGUIEng.SliderSetValueAbs("/InGame/Root/Normal/ChatOptions/ChatLogSlider", 0);
+    XGUIEng.ShowWidget("/InGame/Root/Normal/ChatOptions", 1);
 end
 
 function ModuleRequester.Local:CloseTextWindow(_PlayerID)
