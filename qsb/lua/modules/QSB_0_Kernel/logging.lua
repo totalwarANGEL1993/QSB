@@ -82,7 +82,7 @@ end
 function error(_Text, _Silent)
     Swift.Logging:Log("ERROR: " .._Text, QSB.LogLevel.ERROR, not _Silent);
 end
-function manuelLogging(_text, _Silent)
+function manuelLogging(_Text, _Silent)
     Swift.Logging:Log("Log: " .._Text, QSB.LogLevel.ManuelLogging, not _Silent);
 end
 
