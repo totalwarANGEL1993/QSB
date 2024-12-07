@@ -34,18 +34,18 @@
 QSB.ScriptEvents = QSB.ScriptEvents or {};
 
 ---
--- Erlaube oder verbiete dem Spieler Kühe zu züchten.
+-- Erlaube oder verbiete dem Spieler Schafe zu züchten.
 --
 -- Die Zucht wird immer synchron für alle Spieler erlaubt oder verboten.
 --
--- @param[type=boolean] _Flag Kuhzucht aktiv/inaktiv
+-- @param[type=boolean] _Flag Schafszucht aktiv/inaktiv
 -- @within Anwenderfunktionen
 --
 -- @usage
--- -- Es können keine Kühe gezüchtet werden
+-- -- Es können keine Schafe gezüchtet werden
 -- API.ActivateCattleBreeding(false);
 --
-function API.ActivateCattleBreeding(_Flag)
+function API.ActivateSheepBreeding(_Flag)
     if GUI then
         return;
     end
@@ -64,18 +64,18 @@ function API.ActivateCattleBreeding(_Flag)
 end
 
 ---
--- Erlaube oder verbiete dem Spieler Schafe zu züchten.
+-- Erlaube oder verbiete dem Spieler Kühe zu züchten.
 --
 -- Die Zucht wird immer synchron für alle Spieler erlaubt oder verboten.
 --
--- @param[type=boolean] _Flag Schafzucht aktiv/inaktiv
+-- @param[type=boolean] _Flag Kuhzucht aktiv/inaktiv
 -- @within Anwenderfunktionen
 --
 -- @usage
--- -- Schafsaufzucht ist erlaubt
+-- -- Kuhaufzucht ist erlaubt
 -- API.ActivateSheepBreeding(true);
 --
-function API.ActivateSheepBreeding(_Flag)
+function API.ActivateCattleBreeding(_Flag)
     if GUI then
         return;
     end
