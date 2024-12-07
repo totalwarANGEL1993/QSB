@@ -1,6 +1,11 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.6
+
+- *fix* Die Namen der Funktionen für Schafs- und Kuhzucht richtig gesetzt.
+- *fix* Ein Schreibfehler im manuellLogging gefixt.
+
 ## Version 3.0.0beta-2.1.5
 
 - *change* Für das Logging der Konsolenkommandos wurde ein neues, manuelles Logging erstellt.
