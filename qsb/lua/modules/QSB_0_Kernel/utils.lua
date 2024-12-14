@@ -524,7 +524,7 @@ function API.GetPosition(_Entity)
         return _Entity;
     end
     if (not IsExisting(_Entity)) then
-        warn("API.GetPosition: Entity (" ..tostring(_Entity).. ") does not exist!");
+        --warn("API.GetPosition: Entity (" ..tostring(_Entity).. ") does not exist!");
         return {X= 0, Y= 0, Z= 0};
     end
     local x, y, z = Logic.EntityGetPos(GetID(_Entity));
