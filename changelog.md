@@ -1,9 +1,14 @@
 
 # Changelog
 
-## Version 3.0.0beta-2.1.6
+## Version 3.0.0beta-2.1.7
 
 - *change* Warnung bei nicht passenden Typ in GetPosition wurde auf Info gewechselt.
+
+## Version 3.0.0beta-2.1.6
+
+- *fix* Die Namen der Funktionen für Schafs- und Kuhzucht richtig gesetzt.
+- *fix* Ein Schreibfehler im manuellLogging gefixt.
 
 ## Version 3.0.0beta-2.1.5
 
