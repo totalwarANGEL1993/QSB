@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Version 3.0.0beta-2.1.6
+
+- *change* Warnung bei nicht passenden Typ in GetPosition wurde auf Info gewechselt.
+
 ## Version 3.0.0beta-2.1.5
 
 - *change* Für das Logging der Konsolenkommandos wurde ein neues, manuelles Logging erstellt.
