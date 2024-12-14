@@ -2,5 +2,4 @@
 
 # Changelog:
 
-- *fix* Die Namen der Funktionen für Schafs- und Kuhzucht richtig gesetzt.
-- *fix* Ein Schreibfehler im manuellLogging gefixt.
+- *change* Warnung bei nicht passenden Typ in GetPosition wurde auf Info gewechselt.
