@@ -18,3 +18,29 @@ function API.GetEntitiesOfCategoryInTerritory(_PlayerID, _Category, _Territory)
     return API.SearchEntitiesOfCategoryInTerritory (_Territory, _Category, _PlayerID)
 end
 GetEntitiesOfCategoryInTerritory = API.GetEntitiesOfCategoryInTerritory;
+
+---
+-- Setzt die Ausrichtung des Entity.
+--
+-- <b>Alias</b>: SetOrientation
+--
+-- @param               _Entity  Entity (Scriptname oder ID)
+-- @param[type=number] _Orientation Neue Ausrichtung
+-- @within QSB_1_Entity
+--
+function API.SetEntityOrientation(_Entity, _Orientation)
+    if GUI then
+        return;
+    end
+    local EntityID = GetID(_Entity);
+    if EntityID > 0 then
+        if type(_Orientation) ~= "number" then
+            error("API.SetEntityOrientation: _Orientation is wrong!");
+            return
+        end
+        Logic.SetOrientation(EntityID, API.Round(_Orientation));
+    else
+        error("API.SetEntityOrientation: _Entity (" ..tostring(_Entity).. ") does not exist!");
+    end
+end
+SetOrientation = API.SetEntityOrientation;
