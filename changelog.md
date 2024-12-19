@@ -1,6 +1,11 @@
 
 # Changelog
 
+## Version 3.0beta-2.1.8
+
+- *added* API.MoveToPosition as alias
+- *added* API.SetEntityOrientation
+
 ## Version 3.0.0beta-2.1.7
 
 - *change* Warnung bei nicht passenden Typ in GetPosition wurde auf Info gewechselt.
