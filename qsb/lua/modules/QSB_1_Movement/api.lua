@@ -124,6 +124,8 @@ end
 -- Das Ziel gilt als erreicht, sobald sich das Entity nicht mehr bewegt. Dann
 -- wird das Event QSB.ScriptEvents.EntityArrived geworfen.
 --
+--<p><b>Alias:</b> API.MoveToPosition</p>
+--
 -- @param               _Entity         Bewegtes Entity (Skriptname oder ID)
 -- @param               _Target         Ziel (Skriptname, ID oder Position)
 -- @param[type=number]  _Distance       Entfernung zum Ziel
@@ -162,6 +164,8 @@ function API.MoveEntityToPosition(_Entity, _Target, _Distance, _Angle, _IgnoreBl
     end, Index);
     return Index;
 end
+
+API.MoveToPosition = API.MoveEntityToPosition
 
 ---
 -- Bewegt ein Entity zum Zielpunkt und führt die Funktion aus.
