@@ -2,4 +2,5 @@
 
 # Changelog:
 
-- *change* Warnung bei nicht passenden Typ in GetPosition wurde auf Info gewechselt.
+- *added* API.MoveToPosition as alias
+- *added* API.SetEntityOrientation
