@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Version 3.0beta-2.1.9
+
+- *added* Goal_GoodTributeClaim
+
 ## Version 3.0beta-2.1.8
 
 - *added* API.MoveToPosition as alias

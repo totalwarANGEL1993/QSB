@@ -3055,6 +3055,7 @@ function B_Goal_TributeClaim:AddParameter(_Index, _Parameter)
         self.PlayerID = _Parameter * 1;
     elseif (_Index == 2) then
         self.Amount = _Parameter * 1;
+        self.GoodType = Goods.G_Gold
     elseif (_Index == 3) then
         self.PeriodLength = _Parameter * 1;
     elseif (_Index == 4) then
@@ -3121,7 +3122,7 @@ function B_Goal_TributeClaim:CreateTributeQuest(_Quest)
             _Quest.Identifier.."_TributeClaimQuest" ..Swift.Behavior.QuestCounter,
             self.PlayerID,
             _Quest.ReceivingPlayer,
-            {{ Objective.Deliver, {Goods.G_Gold, self.Amount}}},
+            {{ Objective.Deliver, {self.GoodType, self.Amount}}},
             {{ Triggers.Time, 0 }},
             self.TributTime, nil, nil, OnFinished, nil, true, true, nil,
             StartMsg,
@@ -3225,6 +3226,10 @@ function B_Goal_TributeClaim:Debug(_Quest)
         error(_Quest.Identifier.. ": " ..self.Name .. ": Unknown Territory");
         return true;
     end
+    if not self.GoodType or self.GoodType == nil or self.GoodType == 0 then
+        error(_Quest.Identifier.. ": " ..self.Name .. ": Good type is invalid!");
+        return true;
+    end
     if not self.Quest and Logic.GetStoreHouse(self.PlayerID) == 0 then
         error(_Quest.Identifier.. ": " ..self.Name .. ": Player " .. self.PlayerID .. " is dead. :-(");
         return true;
@@ -3264,6 +3269,126 @@ function B_Goal_TributeClaim:GetCustomData(_Index)
 end
 
 Swift:RegisterBehavior(B_Goal_TributeClaim);
+
+-- -------------------------------------------------------------------------- --
+
+---
+-- Erlaubt es dem Spieler ein Territorium zu "mieten".
+--
+-- Zerstört der Spieler den Außenposten, schlägt der Quest fehl und das
+-- Territorium wird an den Vermieter übergeben. Wenn der Spieler die Pacht
+-- nicht bezahlt, geht der Besitz an den Vermieter über.
+--
+-- Die Zeit zum Bezahlen des Tributes muss immer kleiner sein als die
+-- Wiederholungsperiode.
+--
+-- <b>Hinweis</b>: Je mehr Zeit sich der Spieler lässt um den Tribut zu
+-- begleichen, desto mehr wird sich der Start der nächsten Periode verzögern.
+--
+-- @param _Territory  Name des Territorium
+-- @param _PlayerID   PlayerID des Zahlungsanforderer
+-- @param _Cost       Menge an Gold
+-- @param _Periode    Zahlungsperiode in Sekunden
+-- @param _Time       Zeitbegrenzung in Sekunden
+-- @param _StartMsg   Vorschlagnachricht
+-- @param _SuccessMsg Erfolgsnachricht
+-- @param _FailMsg    Fehlschlagnachricht
+-- @param _HowOften   Anzahl an Zahlungen (0 = endlos)
+-- @param _OtherOwner Eroberung durch Dritte beendet Quest
+-- @param _Abort      Nach nichtbezahlen abbrechen
+--
+-- @within Goal
+--
+function Goal_GoodTributeClaim(...)
+    return B_Goal_GoodTributeClaim:new(...);
+end
+
+B_Goal_GoodTributeClaim = Swift.LuaBase:CopyTable(B_Goal_TributeClaim)
+B_Goal_GoodTributeClaim.Name = "Goal_GoodTributeClaim"
+B_Goal_GoodTributeClaim.Description = {
+    en = "Goal: AI requests periodical good tribute for a specified territory. The quest sender is the demanding player.",
+    de = "Ziel: Die KI fordert einen regelmässigen Warentribut für ein Territorium. Der Questgeber ist der fordernde Spieler.",
+    fr = "Objectif: L'IA demande un tribut de resources régulier pour un territoire. Le donneur de quête est le joueur qui exige."
+}
+B_Goal_GoodTributeClaim.Parameter = {
+    { ParameterType.TerritoryName, en = "Territory", de = "Territorium", fr = "Territoire", },
+    { ParameterType.PlayerID, en = "PlayerID", de = "PlayerID", fr = "PlayerID", },
+    { ParameterType.Custom, en = "Good Type", de = "Warentyp",  fr = "Type de marchandise", },
+    { ParameterType.Number, en = "Amount", de = "Menge", fr = "Quantité", },
+    { ParameterType.Number, en = "Length of period in seconds", de = "Sekunden bis zur nächsten Forderung", fr = "secondes jusqu'à la prochaine demande", },
+    { ParameterType.Number, en = "Time to pay tribute in seconds", de = "Zeit bis zur Zahlung in Sekunden", fr = "Délai avant paiement en secondes", },
+    { ParameterType.Default, en = "Start Message for TributeQuest", de = "Startnachricht der Tributquest", fr = "Message de début de quête de tribut", },
+    { ParameterType.Default, en = "Success Message for TributeQuest", de = "Erfolgsnachricht der Tributquest", fr = "Message de réussite de la quête de tribut", },
+    { ParameterType.Default, en = "Failure Message for TributeQuest", de = "Niederlagenachricht der Tributquest", fr = "Message de défaite de la quête de tribut", },
+    { ParameterType.Number, en = "How often to pay (0 = forever)", de = "Anzahl der Tributquests (0 = unendlich)", fr = "Nombre de quêtes de tribut (0 = infini)", },
+    { ParameterType.Custom, en = "Other owner cancels the quest", de = "Anderer Spieler kann Quest beenden", fr = "Un autre joueur peut terminer une quête", },
+    { ParameterType.Custom, en = "Abort if a rate is not payed", de = "Nicht-Bezahlen beendet die Quest", fr = "Ne pas payer met fin à la quête", },
+}
+
+function B_Goal_GoodTributeClaim:AddParameter(_Index, _Parameter)
+    if (_Index == 0) then
+        if type(_Parameter) == "string" then
+            _Parameter = GetTerritoryIDByName(_Parameter);
+        end
+        self.TerritoryID = _Parameter;
+    elseif (_Index == 1) then
+        self.PlayerID = _Parameter * 1;
+    elseif (_Index == 2) then
+        self.GoodType = Goods[_Parameter];
+    elseif (_Index == 3) then
+        self.Amount = _Parameter * 1;
+    elseif (_Index == 4) then
+        self.PeriodLength = _Parameter * 1;
+    elseif (_Index == 5) then
+        self.TributTime = _Parameter * 1;
+    elseif (_Index == 6) then
+        self.StartMsg = _Parameter;
+    elseif (_Index == 7) then
+        self.SuccessMsg = _Parameter;
+    elseif (_Index == 8) then
+        self.FailureMsg = _Parameter;
+    elseif (_Index == 9) then
+        self.HowOften = _Parameter * 1;
+    elseif (_Index == 10) then
+        self.OtherOwnerCancels = API.ToBoolean(_Parameter);
+    elseif (_Index == 11) then
+        self.DontPayCancels = API.ToBoolean(_Parameter);
+    end
+end
+
+function B_Goal_GoodTributeClaim:GetCustomData(_Index)
+    if (_Index == 2) then
+        return {
+            "G_Beer",
+            "G_Bread",
+            "G_Broom",
+            "G_Carcass",
+            "G_Cheese",
+            "G_Clothes",
+            "G_Gold",
+            "G_Grain",
+            "G_Herb",
+            "G_Honeycomb",
+            "G_Iron",
+            "G_Leather",
+            "G_Medicine",
+            "G_Milk",
+            "G_RawFish",
+            "G_Sausage",
+            "G_SmokedFish",
+            "G_Soap",
+            "G_Stone",
+            "G_Water",
+            "G_Wood",
+            "G_Wool",
+        };
+    end
+    if (_Index == 10) or (_Index == 11) then
+        return {"false", "true"};
+    end
+end
+
+Swift:RegisterBehavior(B_Goal_GoodTributeClaim);
 
 -- -------------------------------------------------------------------------- --
 -- REPRISALS
